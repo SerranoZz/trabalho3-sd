@@ -60,7 +60,7 @@ public class Sb01Application implements CommandLineRunner {
 		Produto produto = new Produto(
 				"https://d14d9vp3wdof84.cloudfront.net/image/589816272436/image_epdgn1agb91u1frlvdfv1bah6a/-S897-FWEBP",
 				mangas,
-				"VOLUME 9",
+				"VOLUME 09",
 				"Volume 9 do Mangá de One Piece",
 				true,
 				LocalDate.of(2023, 12, 19),
@@ -138,7 +138,7 @@ public class Sb01Application implements CommandLineRunner {
 		produto = new Produto(
 				"https://m.media-amazon.com/images/I/61PRgkkQtiL._SY445_SX342_.jpg",
 				mangas,
-				"VOLUME 8",
+				"VOLUME 08",
 				"Volume 8 do Mangá de One Piece",
 				true,
 				LocalDate.of(2023, 12, 19),
@@ -183,7 +183,7 @@ public class Sb01Application implements CommandLineRunner {
 		produto = new Produto(
 				"https://d14d9vp3wdof84.cloudfront.net/image/589816272436/image_3odjie6c2p2uteep5q1mfm4d3b/-S897-FWEBP",
 				mangas,
-				"VOLUME 5",
+				"VOLUME 05",
 				"Volume 5 do Mangá de One Piece",
 				true,
 				LocalDate.of(2023, 12, 19),
@@ -227,7 +227,7 @@ public class Sb01Application implements CommandLineRunner {
 		produto = new Produto(
 				"https://d14d9vp3wdof84.cloudfront.net/image/589816272436/image_jq4jnj4tkh325cmpoo2das5o3t/-S897-FWEBP",
 				mangas,
-				"VOLUME 6",
+				"VOLUME 06",
 				"Volume 6 do Mangá de One Piece",
 				true,
 				LocalDate.of(2023, 12, 19),
@@ -271,7 +271,7 @@ public class Sb01Application implements CommandLineRunner {
 		produto = new Produto(
 				"https://m.media-amazon.com/images/I/91-ZFbM2I-L._SY466_.jpg",
 				mangas,
-				"VOLUME 7",
+				"VOLUME 07",
 				"Volume 7 do Mangá de One Piece",
 				true,
 				LocalDate.of(2023, 12, 19),
@@ -294,7 +294,7 @@ public class Sb01Application implements CommandLineRunner {
 		produto = new Produto(
 				"https://m.media-amazon.com/images/I/516DQXjDcML._SY445_SX342_.jpg",
 				mangas,
-				"VOLUME 1",
+				"VOLUME 01",
 				"Volume 1 do Mangá de One Piece",
 				true,
 				LocalDate.of(2023, 12, 19),
@@ -305,7 +305,7 @@ public class Sb01Application implements CommandLineRunner {
 		produto = new Produto(
 				"https://m.media-amazon.com/images/I/61Prf2b9GRL._SY445_SX342_.jpg",
 				mangas,
-				"VOLUME 2",
+				"VOLUME 02",
 				"Volume 2 do Mangá de One Piece",
 				true,
 				LocalDate.of(2023, 12, 19),
@@ -316,7 +316,7 @@ public class Sb01Application implements CommandLineRunner {
 		produto = new Produto(
 				"https://m.media-amazon.com/images/I/51rgk+G0qKL._SY445_SX342_.jpg",
 				mangas,
-				"VOLUME 3",
+				"VOLUME 03",
 				"Volume 3 do Mangá de One Piece",
 				true,
 				LocalDate.of(2023, 12, 19),
@@ -327,7 +327,7 @@ public class Sb01Application implements CommandLineRunner {
 		produto = new Produto(
 				"https://d14d9vp3wdof84.cloudfront.net/image/589816272436/image_g7q16kopjl6rpd11h42eaase1m/-S897-FWEBP",
 				mangas,
-				"VOLUME 4",
+				"VOLUME 04",
 				"Volume 4 do Mangá de One Piece",
 				true,
 				LocalDate.of(2023, 12, 19),
