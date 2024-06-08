@@ -39,23 +39,9 @@ public class ProdutoService {
         }
     }
 
-//    public Produto alterarProduto(Produto produto) {
-//        if (produto.getId() != null) {
-//            Supplier<EntidadeNaoEncontradaException> sup =
-//                    () -> new EntidadeNaoEncontradaException("Produto não encontrado.");
-//            produtoRepository.findById(produto.getId())
-//                    .orElseThrow(sup);
-//            return produtoRepository.save(produto);
-//        }
-//        else {
-//            throw new EntidadeTransienteException("Tentando alterar um objeto transiente.");
-//        }
-//    }
-
     @Transactional
     public Produto alterarProduto(Produto produto) {
         if (produto.getId() != null) {
-//          produtoRepository.recuperarProdutoPorIdComLock(produto.getId())
             produtoRepository.findById(produto.getId())
                     .orElseThrow(
                             () -> new EntidadeNaoEncontradaException("Produto não encontrado."));
@@ -65,23 +51,6 @@ public class ProdutoService {
             throw new EntidadeTransienteException("Tentando alterar um objeto transiente.");
         }
     }
-
-//    @Transactional
-//    public Produto alterarProduto(Produto produto) {
-//        if (produto.getId() != null) {
-//            Produto umProduto = produtoRepository.findById(produto.getId())
-//                    .orElseThrow(
-//                            () -> new EntidadeNaoEncontradaException("Produto não encontrado."));
-//            umProduto.setNome(produto.getNome());
-//            umProduto.setPreco(produto.getPreco());
-//            umProduto.setDataCadastro(produto.getDataCadastro());
-//            umProduto.setCategoria(produto.getCategoria());
-//            return umProduto;
-//        }
-//        else {
-//            throw new EntidadeTransienteException("Tentando alterar um objeto transiente.");
-//        }
-//    }
 
     public void removerProduto(Long id) {
         produtoRepository.deleteById(id);

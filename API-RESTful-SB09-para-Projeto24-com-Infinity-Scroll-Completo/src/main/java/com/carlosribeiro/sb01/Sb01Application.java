@@ -1,10 +1,12 @@
 package com.carlosribeiro.sb01;
 
+import com.carlosribeiro.sb01.model.Noticia;
 import com.carlosribeiro.sb01.controller.ItemCarrinhoController;
 import com.carlosribeiro.sb01.model.Carrinho;
 import com.carlosribeiro.sb01.model.Categoria;
 import com.carlosribeiro.sb01.model.ItemCarrinho;
 import com.carlosribeiro.sb01.model.Produto;
+import com.carlosribeiro.sb01.repository.NoticiaRepository;
 import com.carlosribeiro.sb01.repository.CarrinhoRepository;
 import com.carlosribeiro.sb01.repository.CategoriaRepository;
 import com.carlosribeiro.sb01.repository.ItemCarrinhoRepository;
@@ -20,6 +22,9 @@ import java.util.List;
 
 @SpringBootApplication
 public class Sb01Application implements CommandLineRunner {
+
+	@Autowired
+	private NoticiaRepository noticiaRepository;
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
@@ -330,11 +335,35 @@ public class Sb01Application implements CommandLineRunner {
 				BigDecimal.valueOf(34.90));
 		produtoRepository.save(produto);
 
+		Noticia noticia;
 
+		noticia = new Noticia(
+				"https://d14d9vp3wdof84.cloudfront.net/image/589816272436/image_epdgn1agb91u1frlvdfv1bah6a/-S897-FWEBP",
+				"Novo Volume de One Piece",
+				"Novo volume do mangá de One Piece será lançado em 19/12/2023",
+				LocalDate.of(2023, 12, 19));
+		noticiaRepository.save(noticia);
 
+		noticia = new Noticia(
+				"https://www.fantoy.com.br/media/catalog/product/cache/5070b15b05522f191912dd31c57262ab/w/o/works_monkey.d.luffy.jpg",
+				"Novo Action Figure de Monkey D. Luffy",
+				"Novo action figure do personagem Monkey D. Luffy do anime One Piece",
+				LocalDate.of(2023, 4, 26));
+		noticiaRepository.save(noticia);
 
+		noticia = new Noticia(
+				"https://www.fantoy.com.br/media/catalog/product/cache/5070b15b05522f191912dd31c57262ab/l/u/luffy_gear_4_battle-min.jpg",
+				"Novo Action Figure de Monkey D. Luffy (Gear 4)",
+				"Novo action figure do personagem Monkey D. Luffy no seu GEAR 4 do anime One Piece",
+				LocalDate.of(2023, 4, 26));
+		noticiaRepository.save(noticia);
 
-
+		noticia = new Noticia(
+				"https://osupernerd.com/cdn/shop/files/Sf9fa46245eda4dc9b2daf2d9ea9923090_1_600x.png?v=1691601695",
+				"Novo Action Figure de Monkey D. Luffy (Gear 5)",
+				"Novo action figure do personagem Monkey D. Luffy no seu GEAR 5 do anime One Piece",
+				LocalDate.of(2023, 4, 26));
+		noticiaRepository.save(noticia);
 
 	}
 }
