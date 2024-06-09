@@ -338,31 +338,39 @@ public class Sb01Application implements CommandLineRunner {
 		Noticia noticia;
 
 		noticia = new Noticia(
-				"https://d14d9vp3wdof84.cloudfront.net/image/589816272436/image_epdgn1agb91u1frlvdfv1bah6a/-S897-FWEBP",
-				"Novo Volume de One Piece",
-				"Novo volume do mangá de One Piece será lançado em 19/12/2023",
-				LocalDate.of(2023, 12, 19));
+				"https://media.techtribune.net/uploads/2021/09/one-piece-milestone.png",
+				"Mensagem do Oda na Jump festa 2024",
+				"O Domingo Mágico Chegou!!! Já cedo, avisamos do remake de One Piece que será feito nesta notícia. Agora traremos mais anúncios que tivemos hoje. Confiram!!!O Domingo Mágico Chegou!!! Já cedo, avisamos do remake de One Piece que será feito nesta notícia. Agora traremos mais anúncios que tivemos hoje. Confiram!!!",
+				LocalDate.of(2023, 11, 17));
+		noticiaRepository.save(noticia);
+
+
+		noticia = new Noticia(
+				"https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/12/one-piece-remake.png?w=682",
+				"REMAKE DE ONE PIECE É ANUNCIADO PELO STUDIO WIT",
+				"No 25º aniversário de One Piece. Vem aí THE ONE PIECE, uma nova animação que vai recriar a história do mangá, começando da saga East Blue e produzida pelo WIT Studio....",
+				LocalDate.of(2023, 12, 16));
 		noticiaRepository.save(noticia);
 
 		noticia = new Noticia(
-				"https://www.fantoy.com.br/media/catalog/product/cache/5070b15b05522f191912dd31c57262ab/w/o/works_monkey.d.luffy.jpg",
-				"Novo Action Figure de Monkey D. Luffy",
-				"Novo action figure do personagem Monkey D. Luffy do anime One Piece",
-				LocalDate.of(2023, 4, 26));
+				"https://uploads.jovemnerd.com.br/wp-content/uploads/2023/12/mosters_anime_netflix__eb2ypqis8-1210x544.jpg",
+				"É Revelado Poster de Monsters",
+				"A Netflix revelou um novo visual, imagens dos personagens e o mês de estreia na Netflix para janeiro de 2024 da adaptação do especial Monsters. Em inglês o título ficou \"Monsters: 103 Mercies Dragon Damnation. Em japones Mons...",
+				LocalDate.of(2023, 12, 15));
 		noticiaRepository.save(noticia);
 
 		noticia = new Noticia(
-				"https://www.fantoy.com.br/media/catalog/product/cache/5070b15b05522f191912dd31c57262ab/l/u/luffy_gear_4_battle-min.jpg",
-				"Novo Action Figure de Monkey D. Luffy (Gear 4)",
-				"Novo action figure do personagem Monkey D. Luffy no seu GEAR 4 do anime One Piece",
-				LocalDate.of(2023, 4, 26));
+				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8YeZwprmEbRrxI4KpH-cunw8-ohVqm7-ltMR85N8vT21p05Lt49nqop_47jEHUK2UFF4&usqp=CAU",
+				"One Piece no Futebol Americano",
+				"No dia 3 de dezembro, um jogo colaborativo “LOS ANGELES RAMS E ONE PIECE Day\" foi realizado entre \"LOS ANGELES RAMS\", um time de futebol americano com sede em Los Angeles, Califórnia, e \"ONE PIECE\". Esta é a primeira vez que u...",
+				LocalDate.of(2023, 12, 13));
 		noticiaRepository.save(noticia);
 
 		noticia = new Noticia(
-				"https://osupernerd.com/cdn/shop/files/Sf9fa46245eda4dc9b2daf2d9ea9923090_1_600x.png?v=1691601695",
-				"Novo Action Figure de Monkey D. Luffy (Gear 5)",
-				"Novo action figure do personagem Monkey D. Luffy no seu GEAR 5 do anime One Piece",
-				LocalDate.of(2023, 4, 26));
+				"https://geekdama.com.br/wp-content/uploads/2022/03/one-piece-news-coo-postcover.jpg",
+				"News World 242 - As principais noticias e curiosidades do mundo de One Piece no mês de novembro...",
+				"Nesse mês tivemos várias notícias e um flashback incrível do Kuma, seja na parte de drama, seja na parte de ligações com o mundo de One Piece, seja em ganchos para o futuro de obra, o uma parceria de One Pice com a Chilli Be...",
+				LocalDate.of(2023, 12, 13));
 		noticiaRepository.save(noticia);
 
 	}

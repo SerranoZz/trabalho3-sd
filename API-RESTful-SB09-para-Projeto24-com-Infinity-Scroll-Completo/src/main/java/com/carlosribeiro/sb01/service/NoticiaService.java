@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+
 import java.util.List;
 
 
@@ -48,12 +50,10 @@ public class NoticiaService {
         noticiaRepository.deleteById(id);
     }
 
+    @GetMapping
     public Noticia recuperarNoticiaPorId(Long id) {
         return noticiaRepository.findById(id)
                 .orElseThrow(() -> new EntidadeNaoEncontradaException("Notícia número " + id + " não encontrada"));
     }
 
-    public Page<Noticia> recuperarNoticiasPaginadas(String titulo, Pageable pageable) {
-        return noticiaRepository.recuperarNoticiasPaginadas(titulo, pageable);
-    }
 }

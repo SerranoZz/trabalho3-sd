@@ -2,11 +2,8 @@ import { NavLink } from 'react-router-dom';
 import capa from '/volume1.jpg';
 import Volume from '../interfaces/volume';
 
-interface Props {
-    noticias: Volume[];
-}
 
-const VolumesPage = ({volumes}: Props) => {
+const VolumesPage = () => {
     return (
       <>
         <div className="container">

@@ -30,7 +30,9 @@ public class Noticia {
     @NotEmpty(message = "O 'Título' deve ser informado.")
     private String titulo;
 
+
     @NotEmpty(message = "A 'Descrição' deve ser informada.")
+    @Column(columnDefinition = "LONGTEXT")
     private String descricao;
 
     @NotNull(message = "A 'Data de Postagem' deve ser informada.")

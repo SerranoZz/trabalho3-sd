@@ -12,10 +12,7 @@ import EpisodiosPage from '../pages/EpisodiosPage';
 import PersonagensPage from '../pages/PersonagensPage';
 import CardDeProdutoPage from '../pages/CardProdutoPage';
 import CadastroDeProdutosForm from '../components/CadastroDeProdutosForm';
-import useNoticias from '../hooks/useNoticias';
-import Noticia from '../interfaces/noticia';
 
-const noticias: Noticia[] = useNoticias();
 
 const router = createBrowserRouter([
     {
@@ -33,7 +30,7 @@ const router = createBrowserRouter([
                     }
                 ] 
             },
-            { path: "/", element: <HomePage noticias={noticias} /> },       
+            { path: "/", element: <HomePage/> },       
             { 
                 path: "cadastrar-produto", 
                 element: <CadastroDeProdutosPage />,

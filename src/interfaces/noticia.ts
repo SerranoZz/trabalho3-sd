@@ -1,9 +1,9 @@
 interface Noticia {
     id?: number;
+    capa: string;
     titulo: string;
-    texto: string;
-    imagem: string;
-    data_cadastro: string;
+    descricao: string;
+    data_cadastro: Date;
 }
 
 export default Noticia;
