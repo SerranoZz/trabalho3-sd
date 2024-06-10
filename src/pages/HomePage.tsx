@@ -42,7 +42,7 @@ const HomePage = () => {
         )}
       </div>
     </div>
-    {/* Renderize a página de cadastro somente se o estado mostrarFormulario for true */}
+    
     {mostrarFormulario && (
         <div className="overlay">
           <div className="overlay-content">
@@ -51,9 +51,9 @@ const HomePage = () => {
         </div>
       )}
 
-      {/* Botão de adição no canto inferior direito */}
+ 
       <div style={{position: 'fixed', bottom: '60px', right: '20px', zIndex: '1000'}}>
-        <AiFillPlusCircle style={{color:"rgba(255, 0, 0, 0.979)", fontSize:'50px'}} />
+        <AiFillPlusCircle type="button" onClick={() => { showForm(); }} style={{color:"rgba(255, 0, 0, 0.979)", fontSize:'50px'}} />
       </div>
     </>
   )

@@ -6,11 +6,13 @@ import Noticia from "../interfaces/noticia";
 import CadastroDeNoticiasPage from "./CadastroDeNoticiasPage";
 import CadastroDeNoticiasForm from "../components/CadastroDeNoticiasForm";
 import { useState } from "react";
+import { RiEditCircleFill } from "react-icons/ri";
+
 
 const NoticiaPage = () => { 
     const {id} = useParams();
     const { data: noticia, isLoading, error } = useNoticiaPorId(id);
-    console.log(window.location.pathname)
+    
     const setNoticiaSelecionado = useNoticiaStore(s => s.setNoticiaSelecionado);
     const tratarNoticiaSelecionado = (noticia: Noticia) => setNoticiaSelecionado(noticia);
 
@@ -65,12 +67,9 @@ const NoticiaPage = () => {
 
       {/* Botão de adição no canto inferior direito */}
       <div style={{position: 'fixed', bottom: '60px', right: '20px', zIndex: '1000'}}>
-        <button className="btn btn-primary" onClick={() => { tratarNoticiaSelecionado(noticia); showForm(); }}>
-          <i className="fas fa-plus"></i>
-        </button>
+        <RiEditCircleFill type="button" onClick={() => {tratarNoticiaSelecionado(noticia); showForm(); }} style={{color:"rgba(255, 0, 0, 0.979)", fontSize:'50px'}} />
       </div>
         </>
     );
 }
 export default NoticiaPage;
-
