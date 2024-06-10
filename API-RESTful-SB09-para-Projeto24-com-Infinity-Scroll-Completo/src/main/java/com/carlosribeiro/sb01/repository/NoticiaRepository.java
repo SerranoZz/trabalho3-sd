@@ -11,6 +11,6 @@ import java.util.List;
 
 
 public interface NoticiaRepository extends JpaRepository<Noticia, Long> {
-    @Query("SELECT n FROM Noticia n")
+    @Query("SELECT n FROM Noticia n order by n.dataPostagem desc")
     List<Noticia> recuperarNoticias();
 }

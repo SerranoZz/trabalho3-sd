@@ -3,7 +3,7 @@ interface Noticia {
     capa: string;
     titulo: string;
     descricao: string;
-    data_cadastro: Date;
+    dataPostagem: Date;
 }
 
 export default Noticia;

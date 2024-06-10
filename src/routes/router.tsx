@@ -13,6 +13,8 @@ import PersonagensPage from '../pages/PersonagensPage';
 import CardDeProdutoPage from '../pages/CardProdutoPage';
 import CadastroDeProdutosForm from '../components/CadastroDeProdutosForm';
 import NoticiaPage from '../pages/NoticiaPage';
+import CadastroDeNoticiasPage from '../pages/CadastroDeNoticiasPage';
+import CadastroDeNoticiasForm from '../components/CadastroDeNoticiasForm';
 
 
 const router = createBrowserRouter([
@@ -45,6 +47,11 @@ const router = createBrowserRouter([
                         element:<CadastroDeProdutosForm/>
                     }
                 ]
+            },   
+            { 
+                path: "cadastrar-noticia/:id", 
+                element: <CadastroDeNoticiasForm />,
+
             },            
             { path: "volumes", element: <VolumesPage /> },
             { path: "filmes", element: <FilmesPage /> },
