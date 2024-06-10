@@ -12,6 +12,7 @@ import EpisodiosPage from '../pages/EpisodiosPage';
 import PersonagensPage from '../pages/PersonagensPage';
 import CardDeProdutoPage from '../pages/CardProdutoPage';
 import CadastroDeProdutosForm from '../components/CadastroDeProdutosForm';
+import NoticiaPage from '../pages/NoticiaPage';
 
 
 const router = createBrowserRouter([
@@ -30,7 +31,11 @@ const router = createBrowserRouter([
                     }
                 ] 
             },
-            { path: "/", element: <HomePage/> },       
+            { 
+                path: "/", 
+                element: <HomePage/>,
+
+            },       
             { 
                 path: "cadastrar-produto", 
                 element: <CadastroDeProdutosPage />,
@@ -55,7 +60,11 @@ const router = createBrowserRouter([
                     }
                 ]
             },
-            { path: "carrinho", element: <CarrinhoPage /> },          
+            { path: "carrinho", element: <CarrinhoPage /> }, 
+            { 
+                path: "noticia/:id", 
+                element: <NoticiaPage />
+            }         
         ]
     }
 ]);
