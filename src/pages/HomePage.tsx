@@ -1,9 +1,24 @@
 import dayjs from "dayjs";
+import 'dayjs/locale/pt-br'; 
 import useNoticias from "../hooks/useNoticias";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import CadastroDeNoticiasForm from "../components/CadastroDeNoticiasForm";
+import { AiFillPlusCircle } from "react-icons/ai";
 
+dayjs.locale('pt-br');
 const HomePage = () => {
+  
   const { data: noticias, isLoading, error } = useNoticias();
+  const [mostrarFormulario, setMostrarFormulario] = useState(false);
+
+  const showForm = () => {
+    if (mostrarFormulario){
+      setMostrarFormulario(false);
+    }else{
+      setMostrarFormulario(true);
+    }
+  };
   
   if (isLoading) return <p>Carregando...</p>
   if (error) return <p>Erro ao carregar as notícias</p>
@@ -18,7 +33,7 @@ const HomePage = () => {
                   <img src={noticia.capa} alt="Spoiler" style={{height:'188px'}}/>
                       <div className="text-left">
                         <h5 className="card-title" id="news-title">{noticia.titulo.toUpperCase()}</h5>
-                        <p className="text" id="news-time">{dayjs(noticia.data_cadastro).format("DD/MM/YYYY")}</p>
+                        <p className="text" id="news-time">{dayjs(noticia.dataPostagem).date()} de {dayjs(noticia.dataPostagem).format('MMMM')} de {dayjs(noticia.dataPostagem).year()}</p>
                       </div>
                       <p className="card-text text-justify" id="news-info">{noticia.descricao}</p>
                 </div>
@@ -27,6 +42,19 @@ const HomePage = () => {
         )}
       </div>
     </div>
+    {/* Renderize a página de cadastro somente se o estado mostrarFormulario for true */}
+    {mostrarFormulario && (
+        <div className="overlay">
+          <div className="overlay-content">
+            <CadastroDeNoticiasForm />
+          </div>
+        </div>
+      )}
+
+      {/* Botão de adição no canto inferior direito */}
+      <div style={{position: 'fixed', bottom: '60px', right: '20px', zIndex: '1000'}}>
+        <AiFillPlusCircle style={{color:"rgba(255, 0, 0, 0.979)", fontSize:'50px'}} />
+      </div>
     </>
   )
 }
