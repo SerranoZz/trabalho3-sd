@@ -3,11 +3,11 @@ import useNoticiaPorId from "../hooks/useNoticiaPorId";
 import dayjs from "dayjs";
 import useNoticiaStore from "../store/noticiaStore";
 import Noticia from "../interfaces/noticia";
-import CadastroDeNoticiasPage from "./CadastroDeNoticiasPage";
 import CadastroDeNoticiasForm from "../components/CadastroDeNoticiasForm";
 import { useState } from "react";
 import { RiEditCircleFill } from "react-icons/ri";
-
+import { MdDelete } from "react-icons/md";
+import useRemoverNoticia from "../hooks/useRemoverNoticia";
 
 const NoticiaPage = () => { 
     const {id} = useParams();
@@ -17,6 +17,24 @@ const NoticiaPage = () => {
     const tratarNoticiaSelecionado = (noticia: Noticia) => setNoticiaSelecionado(noticia);
 
     const [mostrarFormulario, setMostrarFormulario] = useState(false);
+
+    const {
+        data: noticiaRemovido,
+        mutate: removerNoticia,
+        isLoading: removendo,
+        error: erroRemocao,
+      } = useRemoverNoticia();
+      
+      const [removido, setRemovido] = useState(false);
+    
+      const handleRemoverNoticia = () => {
+        tratarRemocaoDeNoticia(noticia.id);
+        setRemovido(true);
+      };
+    
+      const tratarRemocaoDeNoticia = (id) => {
+        removerNoticia(id);
+      };
 
     const showForm = () => {
         if (mostrarFormulario){
@@ -67,7 +85,13 @@ const NoticiaPage = () => {
 
       {/* Botão de adição no canto inferior direito */}
       <div style={{position: 'fixed', bottom: '60px', right: '20px', zIndex: '1000'}}>
-        <RiEditCircleFill type="button" onClick={() => {tratarNoticiaSelecionado(noticia); showForm(); }} style={{color:"rgba(255, 0, 0, 0.979)", fontSize:'50px'}} />
+        <RiEditCircleFill type="button" onClick={() => {tratarNoticiaSelecionado(noticia); showForm(); }} style={{color:"rgba(0, 204, 0, 0.979)", fontSize:'50px'}} />
+        <NavLink to="/">
+        <MdDelete 
+            type="button" 
+            onClick={handleRemoverNoticia} style={{color:"rgba(255, 0, 0, 0.979)", fontSize:'50px'}} 
+        />
+        </NavLink>
       </div>
         </>
     );

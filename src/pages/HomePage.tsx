@@ -53,7 +53,7 @@ const HomePage = () => {
 
  
       <div style={{position: 'fixed', bottom: '60px', right: '20px', zIndex: '1000'}}>
-        <AiFillPlusCircle type="button" onClick={() => { showForm(); }} style={{color:"rgba(255, 0, 0, 0.979)", fontSize:'50px'}} />
+        <AiFillPlusCircle type="button" onClick={() => { showForm(); }} style={{color:"rgba(0, 204, 0, 0.979)", fontSize:'50px'}} />
       </div>
     </>
   )
