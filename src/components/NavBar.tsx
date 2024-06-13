@@ -5,12 +5,17 @@ import banner2 from '/banner2.jpg';
 import banner3 from '/banner3.jpg'; 
 import { FaCommentDots, FaSignInAlt } from "react-icons/fa";
 import { IoMdCart } from "react-icons/io";
+import WebSocketComponent from "./WebSocketComponent";
 
 
 
 function NavBar() {
+    
+
+    
   return (
     <>
+        <WebSocketComponent/>
         <nav className="navbar navbar-light navbar-expand-md" id="navbaredit">
             <div className="container">
 

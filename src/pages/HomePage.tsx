@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import CadastroDeNoticiasForm from "../components/CadastroDeNoticiasForm";
 import { AiFillPlusCircle } from "react-icons/ai";
+import WebSocketComponent from "../components/WebSocketComponent";
 
 dayjs.locale('pt-br');
 const HomePage = () => {

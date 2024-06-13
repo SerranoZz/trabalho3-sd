@@ -9,6 +9,8 @@ import useNoticiaStore from "../store/noticiaStore";
 import Noticia from "../interfaces/noticia";
 import useCadastrarNoticia from "../hooks/useCadastrarNoticia";
 import useAlterarNoticia from "../hooks/useAlterarNoticia";
+import axios from "axios";
+import { BASE_URL } from "../util/constants";
 
 
 const regexData = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/;
@@ -89,6 +91,7 @@ const CadastroDeNoticiaForm = () => {
     } else {
       cadastrarNoticia(noticia);
     }
+    axios.get(`${BASE_URL}/alert?message=Notícia cadastrada com sucesso!&type=success`)
     window.location.reload();
   };
 

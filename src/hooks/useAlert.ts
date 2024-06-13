@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import Noticia from "../interfaces/noticia";
+import Alert from "../interfaces/alert";
 import axios from "axios";
 import { BASE_URL } from "../util/constants";
 
-const useNoticias = () => useQuery({
-  queryKey: ['noticias'],
+const useAlerts = () => useQuery({
+  queryKey: ['alerts'],
   queryFn: () => axios
-    .get<Noticia[]>(BASE_URL+"/noticias")
+    .get<Alert[]>(BASE_URL+"/alert/list")
     .then(res => res.data),
   staleTime: 10_000  
 });
 
-export default useNoticias;
+export default useAlerts;
