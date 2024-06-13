@@ -3,14 +3,15 @@ import opexicon from '/opexicon.webp'
 import banner1 from '/banner1.jpg';
 import banner2 from '/banner2.jpg';
 import banner3 from '/banner3.jpg'; 
-import { FaCommentDots, FaSignInAlt } from "react-icons/fa";
+import { FaCommentDots, FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import { IoMdCart } from "react-icons/io";
 import WebSocketComponent from "./WebSocketComponent";
+import { logado } from "../util/constants";
+
 
 
 
 function NavBar() {
-    
 
     
   return (
@@ -61,7 +62,9 @@ function NavBar() {
 
                         <div className="dropdown-menu" style={{backgroundColor: "rgba(255, 0, 0, 0.979)"}}>
                             <Link to="loja" className="dropdown-item">PRODUTOS</Link>
-                            <Link to="cadastrar-produto" className="dropdown-item">ADICIONAR PRODUTO</Link>
+                            {logado &&(
+                                <Link to="cadastrar-produto" className="dropdown-item">ADICIONAR PRODUTO</Link>
+                            )}
                         </div>
                     </div>
 
@@ -72,17 +75,25 @@ function NavBar() {
                     </NavLink>
 
                     <div className="navbar-nav">
-                    <a className="nav-item nav-link" href="#login" data-toggle="modal" style={{
-                            color: 'white',
-                            textShadow: '2px 0px 0px black',
-                            fontFamily: 'Bree Serif',
-                            fontSize: '16px',
-
-                        }}>
-                        <FaSignInAlt style={{color: "white", fontSize:'20px'}} /> 
-                    </a>
-
-
+                    {(!logado) ? (<a className="nav-item nav-link" href="#login" data-toggle="modal" style={{
+                                                color: 'white',
+                                                textShadow: '2px 0px 0px black',
+                                                fontFamily: 'Bree Serif',
+                                                fontSize: '16px',
+                    
+                                            }}>
+                                            <FaSignInAlt style={{color: "white", fontSize:'20px'}} /> 
+                                        </a>) : (<a className="nav-item nav-link" href="#logout" data-toggle="modal" style={{
+                                                color: 'white',
+                                                textShadow: '2px 0px 0px black',
+                                                fontFamily: 'Bree Serif',
+                                                fontSize: '16px',
+                    
+                                            }}>
+                                            <FaSignOutAlt style={{color: "white", fontSize:'20px'}} /> 
+                                        </a>)
+                    }
+                
                     </div>
 
                 </div>
@@ -123,7 +134,8 @@ function NavBar() {
                         <label htmlFor="exampleInputPassword1" className="form-label">Senha:</label>
                         <input type="password" className="form-control" id="exampleInputPassword1"/>
                     </div>
-                    <button type="submit" className="btn btn-primary" id="submit_button">Submit</button>
+                    <button className="btn btn-primary" id="submit_button">Entrar</button>
+                    <button className="btn btn-primary" id="submit_button">Cadastrar</button>
                     </form>
                 </div>
                 </div>

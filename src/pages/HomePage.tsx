@@ -6,12 +6,13 @@ import { useState } from "react";
 import CadastroDeNoticiasForm from "../components/CadastroDeNoticiasForm";
 import { AiFillPlusCircle } from "react-icons/ai";
 import WebSocketComponent from "../components/WebSocketComponent";
+import { logado } from "../util/constants";
 
 dayjs.locale('pt-br');
 const HomePage = () => {
   
   const { data: noticias, isLoading, error } = useNoticias();
-  const [mostrarFormulario, setMostrarFormulario] = useState(false);
+  const [mostrarFormulario, setMostrarFormulario] = useState(false); 
 
   const showForm = () => {
     if (mostrarFormulario){
@@ -52,10 +53,11 @@ const HomePage = () => {
         </div>
       )}
 
- 
-      <div style={{position: 'fixed', bottom: '60px', right: '20px', zIndex: '1000'}}>
+      {logado &&(
+        <div style={{position: 'fixed', bottom: '60px', right: '20px', zIndex: '1000'}}>
         <AiFillPlusCircle type="button" onClick={() => { showForm(); }} style={{color:"rgba(0, 204, 0, 0.979)", fontSize:'50px'}} />
-      </div>
+        </div>
+      )}
     </>
   )
 }
