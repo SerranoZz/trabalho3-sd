@@ -117,6 +117,7 @@ function NavBar() {
                 </div>
             </div>
 
+<<<<<<< HEAD
             {/* Modal de Login */}
             <div className="modal fade" id="login">
                 <div className="modal-dialog modal-lg">
@@ -133,6 +134,111 @@ function NavBar() {
             </div>
         </>
     );
+=======
+                    <div className="dropdown">
+                        <a className="nav-link nav-item dropdown-toggle" data-toggle="dropdown" href="#" style={{ color: 'white', textShadow: '2px 0px 0px black' }}>LOJA</a>
+
+                        <div className="dropdown-menu" style={{backgroundColor: "rgba(255, 0, 0, 0.979)"}}>
+                            <Link to="loja" className="dropdown-item">PRODUTOS</Link>
+                            {logado &&(
+                                <Link to="cadastrar-produto" className="dropdown-item">ADICIONAR PRODUTO</Link>
+                            )}
+                        </div>
+                    </div>
+
+                    </div>
+
+                    <NavLink to='/carrinho'>
+                        <IoMdCart style={{color: "white", fontSize:'20px', marginRight:'22px'}}/>
+                    </NavLink>
+
+                    <div className="navbar-nav">
+                    {(!logado) ? (<a className="nav-item nav-link" href="#login" data-toggle="modal" style={{
+                                                color: 'white',
+                                                textShadow: '2px 0px 0px black',
+                                                fontFamily: 'Bree Serif',
+                                                fontSize: '16px',
+                    
+                                            }}>
+                                            <FaSignInAlt style={{color: "white", fontSize:'20px'}} /> 
+                                        </a>) : (<a className="nav-item nav-link" href="#logout" data-toggle="modal" style={{
+                                                color: 'white',
+                                                textShadow: '2px 0px 0px black',
+                                                fontFamily: 'Bree Serif',
+                                                fontSize: '16px',
+                    
+                                            }}>
+                                            <FaSignOutAlt style={{color: "white", fontSize:'20px'}} /> 
+                                        </a>)
+                    }
+                
+                    </div>
+
+                </div>
+
+            </div>
+        </nav>
+
+        <div id="carouselExampleSlidesOnly" className="carousel slide" data-ride="carousel">
+            <div className="carousel-inner">
+                <div className="carousel-item active">
+                <img src={banner1} className="d-block w-100 img-fluid"  alt="..." />
+                </div>
+                <div className="carousel-item">
+                <img src={banner3} className="d-block w-100 img-fluid" alt="..." />
+                </div>
+                <div className="carousel-item">
+                <img src={banner2} className="d-block w-100 img-fluid" alt="..." />
+                </div>
+            </div>
+        </div>
+
+        <div className="modal fade" id="login">
+            <div className="modal-dialog modal-lg">
+                <div className="modal-content">
+                <div className="modal-header">
+                    <span className="modal-title">Faça o seu Login!</span>
+                    <i className="fa-solid fa-xmark" style={{color: "#ffffff"}} data-dismiss="modal" aria-label="close">
+                    <span aria-hidden="true">&times;</span>
+                    </i>
+                </div>
+                <div className="modal-body">
+                    <form>
+                    <div className="mb-3">
+                        <label htmlFor="exampleInputEmail1" className="form-label">Email:</label>
+                        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="exampleInputPassword1" className="form-label">Senha:</label>
+                        <input type="password" className="form-control" id="exampleInputPassword1"/>
+                    </div>
+                    <button className="btn btn-primary" id="submit_button">Entrar</button>
+                    <button className="btn btn-primary" id="submit_button">Cadastrar</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div className="container">
+        <div className="col-lg-12" id="message">
+            <div className="text-center">
+                <FaCommentDots style={{ color: "white"}}/>
+            </div>
+            
+            <p> <a 
+                data-trigger="hover"
+                data-toggle="tooltip" 
+                data-placement="right"
+                data-html="true"
+                title="海賊王に俺はなる!"
+                >"EU VOU SER O REI DOS PIRATAS!!!" ― LUFFY, CHAPÉU DE PALHA</a></p>
+      </div>
+
+        </div>
+    </>
+  );
+>>>>>>> 431ea25108b08213c0409e4d04c48c9b0b403be4
 }
 
 export default NavBar;

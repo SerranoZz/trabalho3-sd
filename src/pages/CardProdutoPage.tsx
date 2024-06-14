@@ -5,8 +5,10 @@ import { useState } from 'react';
 import useProdutoStore from '../store/produtoStore';
 import Produto from '../interfaces/produto';
 import dayjs from 'dayjs';
+import { logado } from '../util/constants';
 
 const CardDeProdutoPage = () => {
+  
   const { id } = useParams();
   const { data: produto, isLoading, error } = useProdutoPorId(id);
 
@@ -117,24 +119,26 @@ const CardDeProdutoPage = () => {
             </tbody>
           </table>
 
-          <div>
-          <NavLink to={`/cadastrar-produto`}>
+          {logado &&(
+            <div>
+            <NavLink to={`/cadastrar-produto`}>
+                <button
+                  onClick={() => tratarProdutoSelecionado(produto)}
+                  className={`btn btn-primary btn-sm ${removido ? 'disabled' : ''}`}
+                  disabled={removido}
+                >
+                  Editar
+                </button>
+              </NavLink>
               <button
-                onClick={() => tratarProdutoSelecionado(produto)}
-                className={`btn btn-primary btn-sm ${removido ? 'disabled' : ''}`}
+                onClick={handleRemoverProduto}
+                className={`btn btn-danger btn-sm ${removido ? 'disabled' : ''}`}
                 disabled={removido}
               >
-                Editar
+                Remover
               </button>
-            </NavLink>
-            <button
-              onClick={handleRemoverProduto}
-              className={`btn btn-danger btn-sm ${removido ? 'disabled' : ''}`}
-              disabled={removido}
-            >
-              Remover
-            </button>
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

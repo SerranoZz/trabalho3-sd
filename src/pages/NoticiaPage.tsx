@@ -8,6 +8,8 @@ import { useState } from "react";
 import { RiEditCircleFill } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
 import useRemoverNoticia from "../hooks/useRemoverNoticia";
+import { logado } from "../util/constants";
+
 
 const NoticiaPage = () => { 
     const {id} = useParams();
@@ -83,16 +85,17 @@ const NoticiaPage = () => {
         </div>
       )}
 
-      {/* Botão de adição no canto inferior direito */}
-      <div style={{position: 'fixed', bottom: '60px', right: '20px', zIndex: '1000'}}>
-        <RiEditCircleFill type="button" onClick={() => {tratarNoticiaSelecionado(noticia); showForm(); }} style={{color:"rgba(0, 204, 0, 0.979)", fontSize:'50px'}} />
-        <NavLink to="/">
-        <MdDelete 
-            type="button" 
-            onClick={handleRemoverNoticia} style={{color:"rgba(255, 0, 0, 0.979)", fontSize:'50px'}} 
-        />
-        </NavLink>
-      </div>
+      {logado &&(
+        <div style={{position: 'fixed', bottom: '60px', right: '20px', zIndex: '1000'}}>
+          <RiEditCircleFill type="button" onClick={() => {tratarNoticiaSelecionado(noticia); showForm(); }} style={{color:"rgba(0, 204, 0, 0.979)", fontSize:'50px'}} />
+          <NavLink to="/">
+          <MdDelete 
+              type="button" 
+              onClick={handleRemoverNoticia} style={{color:"rgba(255, 0, 0, 0.979)", fontSize:'50px'}} 
+          />
+          </NavLink>
+        </div>
+      )}
         </>
     );
 }

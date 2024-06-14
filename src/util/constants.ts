@@ -11,4 +11,5 @@ export const URL_CATEGORIAS = "/categorias";
 
 export const URL_ITENS = "/itens";
 
-export let admLogado = true;
+
+export let logado = true;
