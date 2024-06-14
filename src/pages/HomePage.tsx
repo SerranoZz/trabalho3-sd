@@ -6,14 +6,17 @@ import { useState } from "react";
 import CadastroDeNoticiasForm from "../components/CadastroDeNoticiasForm";
 import { AiFillPlusCircle } from "react-icons/ai";
 import WebSocketComponent from "../components/WebSocketComponent";
-import { logado } from "../util/constants";
+import { useBooleanContext } from '../routes/BooleanContext';
 
 dayjs.locale('pt-br');
 const HomePage = () => {
   
   const { data: noticias, isLoading, error } = useNoticias();
   const [mostrarFormulario, setMostrarFormulario] = useState(false); 
+  const { value, setValue } = useBooleanContext();
 
+  console.log("aqui", value);
+  
   const showForm = () => {
     if (mostrarFormulario){
       setMostrarFormulario(false);
@@ -53,7 +56,7 @@ const HomePage = () => {
         </div>
       )}
 
-      {logado &&(
+      {value &&(
         <div style={{position: 'fixed', bottom: '60px', right: '20px', zIndex: '1000'}}>
         <AiFillPlusCircle type="button" onClick={() => { showForm(); }} style={{color:"rgba(0, 204, 0, 0.979)", fontSize:'50px'}} />
         </div>

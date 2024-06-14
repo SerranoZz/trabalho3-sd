@@ -8,12 +8,12 @@ import { useState } from "react";
 import { RiEditCircleFill } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
 import useRemoverNoticia from "../hooks/useRemoverNoticia";
-import { logado } from "../util/constants";
-
+import { useBooleanContext } from '../routes/BooleanContext';
 
 const NoticiaPage = () => { 
     const {id} = useParams();
     const { data: noticia, isLoading, error } = useNoticiaPorId(id);
+    const { value, setValue } = useBooleanContext();
     
     const setNoticiaSelecionado = useNoticiaStore(s => s.setNoticiaSelecionado);
     const tratarNoticiaSelecionado = (noticia: Noticia) => setNoticiaSelecionado(noticia);
@@ -85,7 +85,7 @@ const NoticiaPage = () => {
         </div>
       )}
 
-      {logado &&(
+      {value &&(
         <div style={{position: 'fixed', bottom: '60px', right: '20px', zIndex: '1000'}}>
           <RiEditCircleFill type="button" onClick={() => {tratarNoticiaSelecionado(noticia); showForm(); }} style={{color:"rgba(0, 204, 0, 0.979)", fontSize:'50px'}} />
           <NavLink to="/">

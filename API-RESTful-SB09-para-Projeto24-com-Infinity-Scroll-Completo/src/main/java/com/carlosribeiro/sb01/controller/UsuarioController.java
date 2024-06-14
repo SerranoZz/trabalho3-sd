@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin("http:"+IP+":5173")
+@CrossOrigin("http://192.168.0.7:5173")
 @RestController
 @RequestMapping("usuarios")
 public class UsuarioController {

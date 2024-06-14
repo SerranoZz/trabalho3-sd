@@ -10,17 +10,12 @@ const CadastroUsuarioForm = ({ onClose }) => {
             const response = await axios.post('http://192.168.0.7:8080/usuarios', data);
             console.log('Usuário cadastrado com sucesso:', response.data);
             alert('Usuário cadastrado com sucesso!');
-            reset(); // Limpar o formulário após o sucesso
-            onClose(); // Fechar o modal após o sucesso
+            reset(); 
+            onClose(); 
         } catch (error) {
             console.error('Erro ao cadastrar usuário:', error);
             alert('Erro ao cadastrar usuário.');
         }
-    };
-
-    const handleCancel = () => {
-        reset(); // Limpar o formulário ao clicar em cancelar
-        onClose(); // Fechar o modal ao clicar em cancelar
     };
 
     return (

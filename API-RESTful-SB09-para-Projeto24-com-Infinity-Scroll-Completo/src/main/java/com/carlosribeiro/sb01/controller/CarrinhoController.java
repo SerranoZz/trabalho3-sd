@@ -14,7 +14,7 @@ import java.util.List;
 
 import com.carlosribeiro.sb01.util.ServerUtils;
 
-@CrossOrigin("http:"+IP+":5173")
+@CrossOrigin("http://192.168.0.7:5173")
 @RestController
 @RequestMapping("carrinho")
 

@@ -1,12 +1,9 @@
 package com.carlosribeiro.sb01;
 
-import com.carlosribeiro.sb01.model.Noticia;
+import com.carlosribeiro.sb01.model.*;
 import com.carlosribeiro.sb01.controller.ItemCarrinhoController;
-import com.carlosribeiro.sb01.model.Carrinho;
-import com.carlosribeiro.sb01.model.Categoria;
-import com.carlosribeiro.sb01.model.ItemCarrinho;
-import com.carlosribeiro.sb01.model.Produto;
 import com.carlosribeiro.sb01.repository.NoticiaRepository;
+import com.carlosribeiro.sb01.repository.UsuarioRepository;
 import com.carlosribeiro.sb01.repository.CarrinhoRepository;
 import com.carlosribeiro.sb01.repository.CategoriaRepository;
 import com.carlosribeiro.sb01.repository.ItemCarrinhoRepository;
@@ -372,6 +369,5 @@ public class Sb01Application implements CommandLineRunner {
 				"Nesse mês tivemos várias notícias e um flashback incrível do Kuma, seja na parte de drama, seja na parte de ligações com o mundo de One Piece, seja em ganchos para o futuro de obra, o uma parceria de One Pice com a Chilli Be...",
 				LocalDate.of(2023, 12, 13));
 		noticiaRepository.save(noticia);
-
 	}
 }
