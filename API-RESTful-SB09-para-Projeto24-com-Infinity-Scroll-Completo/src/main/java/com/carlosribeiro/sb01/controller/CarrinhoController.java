@@ -8,9 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
+
 import java.util.List;
 
-@CrossOrigin("http://192.168.0.252:5173")
+import com.carlosribeiro.sb01.util.ServerUtils;
+
+@CrossOrigin("http:"+IP+":5173")
 @RestController
 @RequestMapping("carrinho")
 
