@@ -19,7 +19,7 @@ import java.net.UnknownHostException;
 
 import java.util.List;
 
-@CrossOrigin("http://192.168.0.7:5173")
+@CrossOrigin("http://192.168.0.252:5173")
 @RestController
 @RequestMapping("noticias")
 public class NoticiaController {

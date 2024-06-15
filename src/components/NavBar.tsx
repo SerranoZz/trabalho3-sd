@@ -1,19 +1,18 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { IoMdCart } from 'react-icons/io';
-import { FaCommentDots, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
-import WebSocketComponent from './WebSocketComponent';
+import { FaCommentDots, FaSignInAlt, FaSignOutAlt, FaUserPlus } from 'react-icons/fa';
+import WebSocketComponent from './AlertsComponets';
 import CadastroUsuarioForm from './CadastroUsuarioForm';
 import LoginForm from './LoginForm'; // Importe o LoginForm aqui
 import opexicon from '/opexicon.webp';
 import banner1 from '/banner1.jpg';
 import banner2 from '/banner2.jpg';
 import banner3 from '/banner3.jpg';
-import { useBooleanContext } from '../routes/BooleanContext';
+import { useUserContext } from '../store/UserProvider';
 
 function NavBar() {    
-    const { value, setValue } = useBooleanContext();
-
+    const {estaLogado, admin} = useUserContext();
     return (
         <>
             <WebSocketComponent />
@@ -54,7 +53,7 @@ function NavBar() {
                                 <a className="nav-link nav-item dropdown-toggle" data-toggle="dropdown" href="#" style={{ color: 'white', textShadow: '2px 0px 0px black' }}>LOJA</a>
                                 <div className="dropdown-menu" style={{ backgroundColor: "rgba(255, 0, 0, 0.979)" }}>
                                     <Link to="loja" className="dropdown-item">PRODUTOS</Link>
-                                    {value && (
+                                    {(estaLogado() && admin()) && (
                                         <Link to="cadastrar-produto" className="dropdown-item">ADICIONAR PRODUTO</Link>
                                     )}
                                 </div>
@@ -66,38 +65,53 @@ function NavBar() {
                         </NavLink>
 
                         <div className="navbar-nav">
-                            {/* Botão para abrir o modal de cadastro */}
-                            <button className="nav-item nav-link btn" type="button" data-toggle="modal" data-target="#cadastroUsuario" style={{
-                                color: 'white',
-                                textShadow: '2px 0px 0px black',
-                                fontFamily: 'Bree Serif',
-                                fontSize: '16px',
-                                background: 'none',
-                                border: 'none',
-                                cursor: 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                            }}>
-                                <FaUserPlus style={{ marginRight: '5px' }} />
-                                Cadastrar
-                            </button>
-
-                            {/* Botão para abrir o modal de login */}
-                            <button className="nav-item nav-link btn" type="button" data-toggle="modal" data-target="#login" style={{
-                                color: 'white',
-                                textShadow: '2px 0px 0px black',
-                                fontFamily: 'Bree Serif',
-                                fontSize: '16px',
-                                background: 'none',
-                                border: 'none',
-                                cursor: 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                                marginLeft: '10px', // Ajuste a margem conforme necessário
-                            }}>
-                                <FaSignInAlt style={{ marginRight: '5px' }} />
-                                Login
-                            </button>
+                            {
+                                estaLogado() ? (<button className="nav-item nav-link btn" type="button" onClick={() => { localStorage.removeItem('user'); window.location.reload()}} style={{
+                                    color: 'white',
+                                    textShadow: '2px 0px 0px black',
+                                    fontFamily: 'Bree Serif',
+                                    fontSize: '16px',
+                                    background: 'none',
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    marginLeft: '10px', // Ajuste a margem conforme necessário
+                                }}>
+                                    <FaSignOutAlt style={{ marginRight: '5px' }} />
+                                    Logout
+                                </button>)
+                            : 
+                            
+                            <><button className="nav-item nav-link btn" type="button" data-toggle="modal" data-target="#cadastroUsuario" style={{
+                                        color: 'white',
+                                        textShadow: '2px 0px 0px black',
+                                        fontFamily: 'Bree Serif',
+                                        fontSize: '16px',
+                                        background: 'none',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                    }}>
+                                        <FaUserPlus style={{ marginRight: '5px' }} />
+                                        Cadastrar
+                                    </button><button className="nav-item nav-link btn" type="button" data-toggle="modal" data-target="#login" style={{
+                                        color: 'white',
+                                        textShadow: '2px 0px 0px black',
+                                        fontFamily: 'Bree Serif',
+                                        fontSize: '16px',
+                                        background: 'none',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        marginLeft: '10px', // Ajuste a margem conforme necessário
+                                    }}>
+                                            <FaSignInAlt style={{ marginRight: '5px' }} />
+                                            Login
+                                        </button></>}
+                        
                         </div>
                     </div>
                 </div>

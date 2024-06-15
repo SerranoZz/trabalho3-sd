@@ -1,7 +1,7 @@
-import { useState } from "react";
+const ip = 'http://192.168.0.252';
 
-export const BASE_URL = "http://192.168.0.7:8080";
-export const BASE_URL2 = "http://192.168.0.7:5173"
+export const BASE_URL = `${ip}:8080`;
+export const BASE_URL2 = `${ip}:5173`;
 
 export const URL_USUARIOS = "/usuarios";
 

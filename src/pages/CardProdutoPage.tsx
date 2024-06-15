@@ -5,7 +5,6 @@ import { useState } from 'react';
 import useProdutoStore from '../store/produtoStore';
 import Produto from '../interfaces/produto';
 import dayjs from 'dayjs';
-import { useBooleanContext } from '../routes/BooleanContext';
 const CardDeProdutoPage = () => {
   
   const { id } = useParams();
@@ -13,7 +12,6 @@ const CardDeProdutoPage = () => {
 
   const setProdutoSelecionado = useProdutoStore(s => s.setProdutoSelecionado);
   const tratarProdutoSelecionado = (produto: Produto) => setProdutoSelecionado(produto);
-  const { value, setValue } = useBooleanContext();
   
   const {
     data: produtoRemovido,
@@ -119,7 +117,7 @@ const CardDeProdutoPage = () => {
             </tbody>
           </table>
 
-          {value &&(
+          {1 &&(
             <div>
             <NavLink to={`/cadastrar-produto`}>
                 <button

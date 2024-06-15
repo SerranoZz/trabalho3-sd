@@ -1,13 +1,14 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { BASE_URL } from '../util/constants';
 
 const CadastroUsuarioForm = ({ onClose }) => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const onSubmit = async (data) => {
         try {
-            const response = await axios.post('http://192.168.0.7:8080/usuarios', data);
+            const response = await axios.post(`${BASE_URL}/usuarios`, data);
             console.log('Usuário cadastrado com sucesso:', response.data);
             alert('Usuário cadastrado com sucesso!');
             reset(); 
@@ -35,7 +36,7 @@ const CadastroUsuarioForm = ({ onClose }) => {
                 <input {...register('senha', { required: true })} type="password" className="form-control" id="senha" />
                 {errors.senha && <span>Senha é obrigatória</span>}
             </div>
-            <button type="button" button type="button" className="btn-close" data-dismiss="modal" aria-label="Close">Cancelar</button>
+            <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close">Cancelar</button>
             <button type="submit" className="btn btn-primary">Cadastrar</button>
         </form>
     );

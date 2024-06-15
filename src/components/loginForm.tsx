@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 import axios from 'axios';
-import { useBooleanContext } from '../routes/BooleanContext';
+import { BASE_URL } from '../util/constants';
+import { useUserContext } from '../store/UserProvider';
 
 const LoginForm = ({ onClose }) => { 
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const [loginError, setLoginError] = useState(null); 
     const [loginSuccess, setLoginSuccess] = useState(false); 
-    const { value, setValue } = useBooleanContext();
+    const {user, setUser} = useUserContext();
 
     const onSubmit = async (data) => {
         console.log("login", data);
         try {
-            const response = await axios.post('http://192.168.0.7:8080/usuarios/login', data);
+            const response = await axios.post(`${BASE_URL}/usuarios/login`, data);
             
             if (response.status === 200) {
                 console.log('Usuário logado com sucesso:', response.data);
+                setUser(response.data);
+                console.log('AaAaAaAa',user);
                 setLoginSuccess(true); 
                 setTimeout(() => {
                     setLoginSuccess(false); 
@@ -23,7 +26,6 @@ const LoginForm = ({ onClose }) => {
                     onClose(); 
                 }, 2000);
                 setLoginError(null); 
-                setValue(true);
             } else {
                 console.error('Erro ao realizar login:', response);
                 setLoginError('Erro ao realizar login. Tente novamente mais tarde.');
@@ -58,7 +60,7 @@ const LoginForm = ({ onClose }) => {
                 {errors.senha && <span>Senha é obrigatória</span>}
             </div>
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="button" button type="button" className="btn-close" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close">Cancelar</button>
                 <button type="submit" className="btn btn-primary me-md-2">Login</button>
             </div>
         </form>

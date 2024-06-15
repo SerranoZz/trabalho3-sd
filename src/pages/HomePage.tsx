@@ -5,18 +5,17 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import CadastroDeNoticiasForm from "../components/CadastroDeNoticiasForm";
 import { AiFillPlusCircle } from "react-icons/ai";
-import WebSocketComponent from "../components/WebSocketComponent";
-import { useBooleanContext } from '../routes/BooleanContext';
+import { useUserContext } from "../store/UserProvider";
 
 dayjs.locale('pt-br');
 const HomePage = () => {
   
   const { data: noticias, isLoading, error } = useNoticias();
   const [mostrarFormulario, setMostrarFormulario] = useState(false); 
-  const { value, setValue } = useBooleanContext();
-
-  console.log("aqui", value);
+  const {estaLogado, admin} = useUserContext();
+ 
   
+
   const showForm = () => {
     if (mostrarFormulario){
       setMostrarFormulario(false);
@@ -24,6 +23,7 @@ const HomePage = () => {
       setMostrarFormulario(true);
     }
   };
+
   
   if (isLoading) return <p>Carregando...</p>
   if (error) return <p>Erro ao carregar as notícias</p>
@@ -56,9 +56,9 @@ const HomePage = () => {
         </div>
       )}
 
-      {value &&(
+      {(estaLogado() && admin()) &&(
         <div style={{position: 'fixed', bottom: '60px', right: '20px', zIndex: '1000'}}>
-        <AiFillPlusCircle type="button" onClick={() => { showForm(); }} style={{color:"rgba(0, 204, 0, 0.979)", fontSize:'50px'}} />
+          <AiFillPlusCircle type="button" onClick={() => { showForm(); }} style={{color:"rgba(0, 204, 0, 0.979)", fontSize:'50px'}} />
         </div>
       )}
     </>
