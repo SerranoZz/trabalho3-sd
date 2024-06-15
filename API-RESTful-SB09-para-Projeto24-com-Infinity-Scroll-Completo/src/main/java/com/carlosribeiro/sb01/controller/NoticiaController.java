@@ -18,8 +18,9 @@ import java.net.UnknownHostException;
 
 
 import java.util.List;
+import com.carlosribeiro.sb01.util.ServerConstants;
 
-@CrossOrigin("http://192.168.0.252:5173")
+@CrossOrigin(ServerConstants.URL)
 @RestController
 @RequestMapping("noticias")
 public class NoticiaController {

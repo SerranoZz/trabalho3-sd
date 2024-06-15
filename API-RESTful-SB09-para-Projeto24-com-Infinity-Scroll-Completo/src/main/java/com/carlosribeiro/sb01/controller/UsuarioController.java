@@ -9,20 +9,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import com.carlosribeiro.sb01.util.ServerConstants;
 
-@CrossOrigin("http://192.168.0.252:5173")
+@CrossOrigin(ServerConstants.URL)
 @RestController
 @RequestMapping("usuarios")
 public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
-
-    @GetMapping("{id}")
-    public Usuario buscarUsuarioPorId(@PathVariable("id") Long id) {
-        return usuarioService.buscarUsuarioPorId(id)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com ID: " + id));
-    }
 
     @PostMapping
     public ResponseEntity<?> cadastrarUsuario(@RequestBody Usuario usuario) {
@@ -32,20 +27,6 @@ public class UsuarioController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao cadastrar usuário: " + e.getMessage());
         }
-    }
-
-    @PutMapping("{id}")
-    public Usuario alterarUsuario(@PathVariable("id") Long id, @RequestBody Usuario usuarioAtualizado) {
-        usuarioAtualizado.setId(id); // Garante que o ID seja o mesmo do path
-        return usuarioService.salvarUsuario(usuarioAtualizado);
-    }
-
-    @DeleteMapping("{id}")
-    public Usuario deletarUsuario(@PathVariable("id") Long id) {
-        Usuario usuario = usuarioService.buscarUsuarioPorId(id)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com ID: " + id));
-        usuarioService.deletarUsuario(id);
-        return usuario;
     }
 
     @PostMapping("/login")

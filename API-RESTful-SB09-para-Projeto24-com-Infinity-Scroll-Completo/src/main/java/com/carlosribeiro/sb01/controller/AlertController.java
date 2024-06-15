@@ -6,11 +6,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin("http://192.168.0.252:5173")
+import com.carlosribeiro.sb01.util.ServerConstants;
+
+@CrossOrigin(ServerConstants.URL)
 @RestController
 @RequestMapping("/alert")
 public class AlertController {
-
     private List<String> alertMessages = new ArrayList<>();
 
     @GetMapping

@@ -18,10 +18,6 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public Optional<Usuario> buscarUsuarioPorId(Long id) {
-        return usuarioRepository.findById(id);
-    }
-
     public Usuario salvarUsuario(Usuario usuario) {
         if ("admin".equals(usuario.getSenha())) {
             usuario.setPermissao(1);
@@ -32,12 +28,7 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-
-    public void deletarUsuario(Long id) {
-        usuarioRepository.deleteById(id);
-    }
-
     public Optional<Usuario> verificarCredenciais(String email, String senha) {
-        return usuarioRepository.findByEmailAndSenha(email, senha);
+        return usuarioRepository.procurarPorEmailESenha(email, senha);
     }
 }
