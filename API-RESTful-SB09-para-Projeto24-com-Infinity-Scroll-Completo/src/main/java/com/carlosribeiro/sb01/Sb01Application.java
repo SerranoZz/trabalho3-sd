@@ -21,6 +21,9 @@ import java.util.List;
 public class Sb01Application implements CommandLineRunner {
 
 	@Autowired
+	private UsuarioRepository usuarioRepository;
+
+	@Autowired
 	private NoticiaRepository noticiaRepository;
 
 	@Autowired
@@ -369,5 +372,9 @@ public class Sb01Application implements CommandLineRunner {
 				"Nesse mês tivemos várias notícias e um flashback incrível do Kuma, seja na parte de drama, seja na parte de ligações com o mundo de One Piece, seja em ganchos para o futuro de obra, o uma parceria de One Pice com a Chilli Be...",
 				LocalDate.of(2023, 12, 13));
 		noticiaRepository.save(noticia);
+		
+		Usuario usuario = new Usuario("root", "root@root", "root", 1);
+		usuarioRepository.save(usuario);
 	}
+
 }
