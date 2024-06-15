@@ -17,20 +17,24 @@ public class NotificacaoService {
     }
 
     public Noticia getUltimaNotificacao(String ultimoIdVisualizado) {
-        List<Noticia> noticias = noticiaService.recuperarNoticias();
+        Long ultimoId = null;
 
-        if (noticias.isEmpty()) {
-            return null;
-        }
-
-        Long ultimoId = ultimoIdVisualizado != null ? Long.parseLong(ultimoIdVisualizado) : null;
-
-        for (Noticia noticia : noticias) {
-            if (ultimoId == null || noticia.getId() > ultimoId) {
-                return noticia;
+        if (ultimoIdVisualizado != null) {
+            try {
+                ultimoId = Long.parseLong(ultimoIdVisualizado);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                return null;
             }
         }
 
-        return null;
+        if (ultimoId == null) {
+            return null;
+        }
+
+        Long proximoId = ultimoId + 1;
+
+        return noticiaService.recuperarNoticiaPorId(proximoId);
     }
+
 }
