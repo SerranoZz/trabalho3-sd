@@ -1,14 +1,19 @@
 package com.carlosribeiro.sb01.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import jakarta.validation.Constraint;
 import jakarta.validation.constraints.NotEmpty;
 
 import java.time.LocalDate;
+
+import org.hibernate.validator.constraints.UniqueElements;
 
 @Data
 @AllArgsConstructor
@@ -24,6 +29,7 @@ public class Usuario {
 
     @Getter
     @NotEmpty(message = "O 'E-mail' deve ser informado.")
+    @Column(unique = true)
     private String email;
 
     @Getter
