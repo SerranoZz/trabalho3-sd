@@ -18,7 +18,6 @@ const LoginForm = ({ onClose }) => {
             if (response.status === 200) {
                 console.log('Usuário logado com sucesso:', response.data);
                 setUser(response.data);
-                console.log('AaAaAaAa',user);
                 setLoginSuccess(true); 
                 setTimeout(() => {
                     setLoginSuccess(false); 
@@ -38,11 +37,6 @@ const LoginForm = ({ onClose }) => {
                 setLoginError('Erro ao realizar login. Verifique sua conexão ou tente novamente mais tarde.');
             }
         }
-    };
-
-    const handleCancel = () => {
-        reset(); // Limpar o formulário ao clicar em cancelar
-        onClose(); // Fechar o modal ao cancelar
     };
     
     return (

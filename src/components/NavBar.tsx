@@ -2,9 +2,9 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { IoMdCart } from 'react-icons/io';
 import { FaCommentDots, FaSignInAlt, FaSignOutAlt, FaUserPlus } from 'react-icons/fa';
-import WebSocketComponent from './AlertsComponets';
+import WebSocketComponent from './NotificacaoConfirm';
 import CadastroUsuarioForm from './CadastroUsuarioForm';
-import LoginForm from './LoginForm'; // Importe o LoginForm aqui
+import LoginForm from './LoginForm';
 import opexicon from '/opexicon.webp';
 import banner1 from '/banner1.jpg';
 import banner2 from '/banner2.jpg';
