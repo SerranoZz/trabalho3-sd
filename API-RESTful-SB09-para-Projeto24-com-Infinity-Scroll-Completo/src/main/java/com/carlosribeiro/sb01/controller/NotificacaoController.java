@@ -11,17 +11,17 @@ import com.carlosribeiro.sb01.util.ServerConstants;
 @CrossOrigin(ServerConstants.URL)
 @RestController
 @RequestMapping("/alert")
-public class AlertController {
+public class NotificacaoController {
     private List<String> alertMessages = new ArrayList<>();
 
     @GetMapping
-    public String sendAlert(@RequestParam String message) {
+    public String enviarNotificacao(@RequestParam String message) {
         alertMessages.add(message);
         return "Alert sent: " + message;
     }
 
     @GetMapping("/list")
-    public List<String> getAlerts() {
+    public List<String> getNotificacoes() {
         return alertMessages;
     }
 }
