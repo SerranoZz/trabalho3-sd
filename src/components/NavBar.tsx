@@ -79,7 +79,7 @@ function NavBar() {
                                     marginLeft: '10px', // Ajuste a margem conforme necessário
                                 }}>
                                     <FaSignOutAlt style={{ marginRight: '5px' }} />
-                                    Logout
+                                    
                                 </button>)
                             : 
                             
@@ -95,7 +95,7 @@ function NavBar() {
                                         alignItems: 'center',
                                     }}>
                                         <FaUserPlus style={{ marginRight: '5px' }} />
-                                        Cadastrar
+                                        
                                     </button><button className="nav-item nav-link btn" type="button" data-toggle="modal" data-target="#login" style={{
                                         color: 'white',
                                         textShadow: '2px 0px 0px black',
@@ -109,7 +109,7 @@ function NavBar() {
                                         marginLeft: '10px', // Ajuste a margem conforme necessário
                                     }}>
                                             <FaSignInAlt style={{ marginRight: '5px' }} />
-                                            Login
+                                            
                                         </button></>}
                         
                         </div>
