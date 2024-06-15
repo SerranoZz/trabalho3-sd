@@ -13,31 +13,26 @@ const WebSocketComponent = () => {
         const response = await axios.get(BASE_URL+'/alert/list');
         const newAlerts = response.data;
         console.log(newAlerts.length, alerts.length)
-        // Verifica se há alerta novo comparando o comprimento dos arrays
         if (newAlerts.length > alerts.length) {
-          alerts = newAlerts; // Atualiza o estado 'alerts' com os novos alertas
-          setHasNewAlert(true); // Indica que há um novo alerta
+          alerts = newAlerts; 
+          setHasNewAlert(true); 
         } else {
-          setHasNewAlert(false); // Não há novo alerta
+          setHasNewAlert(false); 
         }
       } catch (error) {
         console.error('Erro ao buscar alertas:', error);
       }
     };
 
-    // Função para buscar alertas inicialmente
     fetchAlerts();
 
-    // Configurar intervalo para buscar novos alertas a cada 2 segundos
     const interval = setInterval(() => {
       fetchAlerts();
-    }, 2000); // 2 segundos em milissegundos
+    }, 2000); 
 
-    // Limpar intervalo quando o componente for desmontado
     return () => clearInterval(interval);
-  }, [alerts]); // Dependência agora inclui o estado 'alerts'
+  }, [alerts]); 
 
-  // Efeito para mostrar popup de alerta se houver novo alerta
   useEffect(() => {
     if (hasNewAlert) {
       const result = window.confirm('Nova notícia cadastrada! Clique em OK para conferir.');
