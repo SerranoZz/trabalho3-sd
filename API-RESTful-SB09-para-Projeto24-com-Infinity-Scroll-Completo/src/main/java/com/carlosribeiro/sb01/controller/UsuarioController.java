@@ -7,17 +7,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
-import com.carlosribeiro.sb01.util.ServerConstants;
+import com.carlosribeiro.sb01.util.ConstantesServidor;
 
-@CrossOrigin(ServerConstants.URL)
+@CrossOrigin(ConstantesServidor.URL)
 @RestController
 @RequestMapping("usuarios")
 public class UsuarioController {
 
+    private final UsuarioService usuarioService;
+
     @Autowired
-    private UsuarioService usuarioService;
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
+    }
 
     @PostMapping
     public ResponseEntity<?> cadastrarUsuario(@RequestBody Usuario usuario) {
@@ -35,8 +38,8 @@ public class UsuarioController {
         Optional<Usuario> usuarioOpt = usuarioService.verificarCredenciais(usuario.getEmail(), usuario.getSenha());
         if (usuarioOpt.isPresent()) {
             return ResponseEntity.ok(usuarioOpt.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
         }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
     }
 }
+

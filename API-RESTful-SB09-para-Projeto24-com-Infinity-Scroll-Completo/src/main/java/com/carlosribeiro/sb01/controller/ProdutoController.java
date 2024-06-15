@@ -12,9 +12,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import com.carlosribeiro.sb01.util.ServerConstants;
+import com.carlosribeiro.sb01.util.ConstantesServidor;
 
-@CrossOrigin(ServerConstants.URL)
+@CrossOrigin(ConstantesServidor.URL)
 @RestController
 @RequestMapping("produtos")   // http://localhost:8080/produtos
 public class ProdutoController {

@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import com.carlosribeiro.sb01.util.ServerConstants;
+import com.carlosribeiro.sb01.util.ConstantesServidor;
 
-@CrossOrigin(ServerConstants.URL)
+@CrossOrigin(ConstantesServidor.URL)
 @RestController
 @RequestMapping("carrinho")
 

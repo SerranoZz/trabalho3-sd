@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import com.carlosribeiro.sb01.util.ServerConstants;
+import com.carlosribeiro.sb01.util.ConstantesServidor;
 
-@CrossOrigin(ServerConstants.URL)
+@CrossOrigin(ConstantesServidor.URL)
 @RestController
 @RequestMapping("itens")
 public class ItemCarrinhoController {
