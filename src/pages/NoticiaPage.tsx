@@ -8,7 +8,7 @@ import { useState } from "react";
 import { RiEditCircleFill } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
 import useRemoverNoticia from "../hooks/useRemoverNoticia";
-import { useUserContext } from "../store/UserProvider";
+import { useUsuarioContext } from "../store/UsuarioProvider";
 
 const NoticiaPage = () => { 
     const {id} = useParams();
@@ -18,7 +18,7 @@ const NoticiaPage = () => {
     const tratarNoticiaSelecionado = (noticia: Noticia) => setNoticiaSelecionado(noticia);
 
     const [mostrarFormulario, setMostrarFormulario] = useState(false);
-    const {estaLogado, admin} = useUserContext();
+    const {estaLogado, admin} = useUsuarioContext();
 
     const {
         data: noticiaRemovido,

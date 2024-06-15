@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import com.carlosribeiro.sb01.util.ConstantesServidor;
 
-@CrossOrigin(ConstantesServidor.URL)
+@CrossOrigin(origins = ConstantesServidor.URL)
 @RestController
 @RequestMapping("categorias")   // http://localhost:8080/categorias
 public class CategoriaController {

@@ -12,9 +12,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.HashMap;
 import java.util.List;
-
-
+import java.util.Map;
 
 
 @Service
@@ -27,12 +27,22 @@ public class NoticiaService {
         return noticiaRepository.recuperarNoticias();
     }
 
+//    public Noticia cadastrarNoticia(Noticia noticia) {
+//        if (noticia.getId() == null) {
+//            return noticiaRepository.save(noticia);
+//        } else {
+//            throw new EntidadeDestacadaException("Tentando cadastrar uma notícia destacada");
+//        }
+//    }
+
     public Noticia cadastrarNoticia(Noticia noticia) {
-        if (noticia.getId() == null) {
-            return noticiaRepository.save(noticia);
-        } else {
+        if (noticia.getId() != null) {
             throw new EntidadeDestacadaException("Tentando cadastrar uma notícia destacada");
         }
+
+        Noticia novaNoticia = noticiaRepository.save(noticia);
+
+        return novaNoticia;
     }
 
     @Transactional

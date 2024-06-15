@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { set, useForm } from 'react-hook-form';
 import axios from 'axios';
 import { BASE_URL } from '../util/constants';
-import { useUserContext } from '../store/UserProvider';
+import { useUsuarioContext } from '../store/UsuarioProvider';
 
 const LoginForm = ({ onClose }) => { 
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const [loginError, setLoginError] = useState(null); 
     const [loginSuccess, setLoginSuccess] = useState(false); 
-    const {user, setUser} = useUserContext();
+    const {usuario, setUsuario} = useUsuarioContext();
 
     const onSubmit = async (data) => {
         console.log("login", data);
@@ -17,7 +17,7 @@ const LoginForm = ({ onClose }) => {
             
             if (response.status === 200) {
                 console.log('Usuário logado com sucesso:', response.data);
-                setUser(response.data);
+                setUsuario(response.data);
                 setLoginSuccess(true); 
                 setTimeout(() => {
                     setLoginSuccess(false); 

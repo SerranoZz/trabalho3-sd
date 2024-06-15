@@ -5,7 +5,7 @@ import java.net.UnknownHostException;
 
 //teste
 
-public class ServerUtils {
+public class ServidorUtils {
     public static String getServerIP() {
         try {
             InetAddress inetAddress = InetAddress.getLocalHost();

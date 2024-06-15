@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 import com.carlosribeiro.sb01.util.ConstantesServidor;
 
-@CrossOrigin(ConstantesServidor.URL)
+@CrossOrigin(origins = ConstantesServidor.URL)
 @RestController
 @RequestMapping("usuarios")
 public class UsuarioController {

@@ -3,14 +3,14 @@ package com.carlosribeiro.sb01.controller;
 import com.carlosribeiro.sb01.model.Noticia;
 import com.carlosribeiro.sb01.service.NoticiaService;
 import com.carlosribeiro.sb01.util.ConstantesServidor;
-import com.carlosribeiro.sb01.util.ServerUtils;
+import com.carlosribeiro.sb01.util.ServidorUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(ConstantesServidor.URL)
+@CrossOrigin(origins = ConstantesServidor.URL)
 @RestController
 @RequestMapping("noticias")
 public class NoticiaController {
@@ -24,7 +24,7 @@ public class NoticiaController {
 
     @GetMapping
     public List<Noticia> recuperarNoticias() {
-        System.out.println(ServerUtils.getServerIP());
+        System.out.println(ServidorUtils.getServerIP());
         return noticiaService.recuperarNoticias();
     }
 

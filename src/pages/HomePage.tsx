@@ -5,14 +5,14 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import CadastroDeNoticiasForm from "../components/CadastroDeNoticiasForm";
 import { AiFillPlusCircle } from "react-icons/ai";
-import { useUserContext } from "../store/UserProvider";
+import { useUsuarioContext } from "../store/UsuarioProvider";
 
 dayjs.locale('pt-br');
 const HomePage = () => {
   
   const { data: noticias, isLoading, error } = useNoticias();
   const [mostrarFormulario, setMostrarFormulario] = useState(false); 
-  const {estaLogado, admin} = useUserContext();
+  const {estaLogado, admin} = useUsuarioContext();
  
   
 

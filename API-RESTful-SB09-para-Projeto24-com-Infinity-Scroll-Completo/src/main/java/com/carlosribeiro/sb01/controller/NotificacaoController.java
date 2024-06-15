@@ -1,26 +1,26 @@
 package com.carlosribeiro.sb01.controller;
 
+import com.carlosribeiro.sb01.model.Noticia;
+import com.carlosribeiro.sb01.service.NotificacaoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import com.carlosribeiro.sb01.util.ConstantesServidor;
 
-@CrossOrigin(ConstantesServidor.URL)
+@CrossOrigin(origins = ConstantesServidor.URL)
 @RestController
-@RequestMapping("/alert")
+@RequestMapping("/notificacoes")
 public class NotificacaoController {
-    private List<String> alertMessages = new ArrayList<>();
 
-    @GetMapping
-    public String enviarNotificacao(@RequestParam String message) {
-        alertMessages.add(message);
-        return "Alert sent: " + message;
+    private final NotificacaoService notificacaoService;
+
+    @Autowired
+    public NotificacaoController(NotificacaoService notificacaoService) {
+        this.notificacaoService = notificacaoService;
     }
 
-    @GetMapping("/list")
-    public List<String> getNotificacoes() {
-        return alertMessages;
+    @GetMapping("/ultimas")
+    public Noticia getUltimaNotificacao(@RequestParam(required = false) String ultimoIdVisualizado) {
+        return notificacaoService.getUltimaNotificacao(ultimoIdVisualizado);
     }
 }
