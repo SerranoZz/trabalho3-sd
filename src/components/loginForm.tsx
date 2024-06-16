@@ -21,9 +21,8 @@ const LoginForm = ({ onClose }) => {
                 setLoginSuccess(true); 
                 setTimeout(() => {
                     setLoginSuccess(false); 
-                    reset();
-                    onClose(); 
-                }, 2000);
+                    window.location.reload();
+                }, 1000);
                 setLoginError(null); 
             } else {
                 console.error('Erro ao realizar login:', response);
@@ -54,8 +53,8 @@ const LoginForm = ({ onClose }) => {
                 {errors.senha && <span>Senha é obrigatória</span>}
             </div>
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close">Cancelar</button>
-                <button type="submit" className="btn btn-primary me-md-2">Login</button>
+                <button type="button" className="btn btn-primary" id="submit_button" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                <button type="submit" className="btn btn-primary" id="submit_button" style={{marginLeft:'12px'}}>Login</button>
             </div>
         </form>
     );

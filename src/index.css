@@ -163,6 +163,12 @@ body {
     color: white;
 }
 
+#cadastroUsuario .form-label{
+    font-family: 'Bree Serif';
+    font-size: 20px;
+    color: white;
+}
+
 label{
     font-family: 'Bree Serif';
     font-size: 16px;
@@ -177,6 +183,13 @@ input{
 }
 
 #login .form-control{
+    font-family: 'Bree Serif';
+    background-color: rgba(255, 0, 0, 0.979);
+    border: 2px solid;
+    color: white;
+}
+
+#cadastroUsuario .form-control{
     font-family: 'Bree Serif';
     background-color: rgba(255, 0, 0, 0.979);
     border: 2px solid;

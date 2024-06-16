@@ -1,4 +1,4 @@
-import { NavLink, useParams } from "react-router-dom"
+import { NavLink, useParams } from "react-router-dom";
 import useNoticiaPorId from "../hooks/useNoticiaPorId";
 import dayjs from "dayjs";
 import useNoticiaStore from "../store/noticiaStore";
@@ -9,16 +9,17 @@ import { RiEditCircleFill } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
 import useRemoverNoticia from "../hooks/useRemoverNoticia";
 import { useUsuarioContext } from "../store/UsuarioProvider";
+import { BASE_URL2 } from "../util/constants";
 
 const NoticiaPage = () => { 
-    const {id} = useParams();
+    const { id } = useParams();
     const { data: noticia, isLoading, error } = useNoticiaPorId(id);
     
     const setNoticiaSelecionado = useNoticiaStore(s => s.setNoticiaSelecionado);
     const tratarNoticiaSelecionado = (noticia: Noticia) => setNoticiaSelecionado(noticia);
 
     const [mostrarFormulario, setMostrarFormulario] = useState(false);
-    const {estaLogado, admin} = useUsuarioContext();
+    const { estaLogado, admin } = useUsuarioContext();
 
     const {
         data: noticiaRemovido,
@@ -26,29 +27,38 @@ const NoticiaPage = () => {
         isLoading: removendo,
         error: erroRemocao,
       } = useRemoverNoticia();
-      
-      const [removido, setRemovido] = useState(false);
-    
-      const handleRemoverNoticia = () => {
+
+    const [removido, setRemovido] = useState(false);
+    const [confirmarRemocao, setConfirmarRemocao] = useState(false);
+
+    const handleRemoverNoticia = () => {
+        setConfirmarRemocao(true);
+    };
+
+    const confirmarRemocaoNoticia = () => {
         tratarRemocaoDeNoticia(noticia.id);
         setRemovido(true);
-      };
-    
-      const tratarRemocaoDeNoticia = (id) => {
+        setConfirmarRemocao(false);
+        alert('Notícia removida com sucesso! Clique em OK para voltar à página inicial.');
+        window.location.href = `${BASE_URL2}`;
+        
+    };
+
+    const cancelarRemocaoNoticia = () => {
+        setConfirmarRemocao(false);
+    };
+
+    const tratarRemocaoDeNoticia = (id) => {
         removerNoticia(id);
-      };
+    };
 
     const showForm = () => {
-        if (mostrarFormulario){
-        setMostrarFormulario(false);
-        }else{
-        setMostrarFormulario(true);
-        }
+        setMostrarFormulario(!mostrarFormulario);
     };
 
     if (isLoading) return <h6>Carregando...</h6>;
     
-    const dataFinal = ()=> {
+    const dataFinal = () => {
         return `${dayjs(noticia.dataPostagem).date()} de ${dayjs(noticia.dataPostagem).format('MMMM')} de ${dayjs(noticia.dataPostagem).year()}`
     }
 
@@ -76,27 +86,40 @@ const NoticiaPage = () => {
             {noticia.descricao}
         </p>
 
-        
         {mostrarFormulario && (     
         <div className="overlay">
           <div className="overlay-content">
             <CadastroDeNoticiasForm />
           </div>
         </div>
-      )}
+        )}
 
-      {(estaLogado() && admin()) &&(
-        <div style={{position: 'fixed', bottom: '60px', right: '20px', zIndex: '1000'}}>
-          <RiEditCircleFill type="button" onClick={() => {tratarNoticiaSelecionado(noticia); showForm(); }} style={{color:"rgba(0, 204, 0, 0.979)", fontSize:'50px'}} />
-          <NavLink to="/">
-          <MdDelete 
-              type="button" 
-              onClick={handleRemoverNoticia} style={{color:"rgba(255, 0, 0, 0.979)", fontSize:'50px'}} 
-          />
-          </NavLink>
-        </div>
-      )}
+        {(estaLogado() && admin()) && (
+            <div style={{position: 'fixed', bottom: '60px', right: '20px', zIndex: '1000'}}>
+              <RiEditCircleFill 
+                type="button" 
+                onClick={() => { tratarNoticiaSelecionado(noticia); showForm(); }} 
+                style={{color:"rgba(0, 204, 0, 0.979)", fontSize:'50px'}} 
+              />
+              <MdDelete 
+                type="button" 
+                onClick={handleRemoverNoticia} 
+                style={{color:"rgba(255, 0, 0, 0.979)", fontSize:'50px'}} 
+              />
+            </div>
+        )}
+
+        {confirmarRemocao && (
+            <div className="overlay">
+                <div className="overlay-content" style={{maxWidth:'300px'}}>
+                    <h5>Você tem certeza que deseja remover esta notícia?</h5>
+                    <button type="submit" className="btn btn-primary" id="submit_button" style={{backgroundColor:''}} onClick={confirmarRemocaoNoticia}>Sim</button>
+                    <button type="submit" className="btn btn-primary" id="submit_button" style={{marginLeft:'12px'}} onClick={cancelarRemocaoNoticia}>Não</button>
+                </div>
+            </div>
+        )}
         </>
     );
 }
+
 export default NoticiaPage;

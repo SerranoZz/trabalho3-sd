@@ -66,7 +66,7 @@ function NavBar() {
 
                         <div className="navbar-nav">
                             {
-                                estaLogado() ? (<button className="nav-item nav-link btn" type="button" onClick={() => { localStorage.removeItem('user'); window.location.reload()}} style={{
+                                estaLogado() ? (<button className="nav-item nav-link btn" type="button" onClick={() => { localStorage.removeItem('usuario'); window.location.reload()}} style={{
                                     color: 'white',
                                     textShadow: '2px 0px 0px black',
                                     fontFamily: 'Bree Serif',
