@@ -2,10 +2,23 @@ package com.carlosribeiro.sb01.controller;
 
 import com.carlosribeiro.sb01.model.Noticia;
 import com.carlosribeiro.sb01.service.NotificacaoService;
+import com.carlosribeiro.sb01.util.NoticiaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.carlosribeiro.sb01.util.ConstantesServidor;
+
+import com.carlosribeiro.sb01.model.Noticia;
+import com.carlosribeiro.sb01.service.NotificacaoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import com.carlosribeiro.sb01.util.ConstantesServidor;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.List;
 
 @CrossOrigin(origins = ConstantesServidor.URL)
 @RestController
@@ -20,7 +33,15 @@ public class NotificacaoController {
     }
 
     @GetMapping("/ultimas")
-    public Noticia getUltimaNotificacao(@RequestParam(required = false) String ultimoIdVisualizado) {
-        return notificacaoService.getUltimaNotificacao(ultimoIdVisualizado);
+    public List<NoticiaDTO> getUltimasNotificacoes(@RequestParam(required = false) String ultimoTimestampVisualizado) {
+        LocalDateTime timestamp = null;
+        if (ultimoTimestampVisualizado != null && !ultimoTimestampVisualizado.isEmpty()) {
+            try {
+                timestamp = LocalDateTime.parse(ultimoTimestampVisualizado);
+            } catch (DateTimeParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return notificacaoService.getUltimasNotificacoes(timestamp);
     }
 }

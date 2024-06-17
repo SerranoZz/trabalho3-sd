@@ -1,19 +1,17 @@
 package com.carlosribeiro.sb01.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import java.math.BigDecimal;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.time.LocalDate;
-
-
-
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -32,7 +30,6 @@ public class Noticia {
     @NotEmpty(message = "O 'Título' deve ser informado.")
     private String titulo;
 
-
     @NotEmpty(message = "A 'Descrição' deve ser informada.")
     @Column(columnDefinition = "LONGTEXT")
     private String descricao;
@@ -40,6 +37,14 @@ public class Noticia {
     @NotNull(message = "A 'Data de Postagem' deve ser informada.")
     @Column(name = "DATA_POSTAGEM")
     private LocalDate dataPostagem;
+
+    @CreationTimestamp
+    @Column(name = "DATA_CRIACAO", updatable = false)
+    private LocalDateTime dataCriacao;
+
+    @UpdateTimestamp
+    @Column(name = "DATA_ATUALIZACAO")
+    private LocalDateTime dataAtualizacao;
 
     public Noticia(String capa, String titulo, String descricao, LocalDate dataPostagem) {
         this.capa = capa;

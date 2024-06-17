@@ -1,4 +1,4 @@
-import React, { createContext, useState, ReactNode, useContext, useEffect } from 'react';
+import React, { createContext, useState, ReactNode, useEffect } from 'react';
 import Notificacao from '../interfaces/notificacao';
 
 interface NotificacaoContextType {
@@ -7,8 +7,8 @@ interface NotificacaoContextType {
 }
 
 const defaultNotificacaoContext: NotificacaoContextType = {
-  ultimaNotificacao: { id: 5 }, 
-  setUltimaNotificacao: () => {} 
+  ultimaNotificacao: { id: 5, timestamp: new Date().toISOString().slice(0, -5) + 'Z' },
+  setUltimaNotificacao: () => {}
 };
 
 const NotificacaoContext = createContext<NotificacaoContextType>(defaultNotificacaoContext);
@@ -16,7 +16,7 @@ const NotificacaoContext = createContext<NotificacaoContextType>(defaultNotifica
 const NotificacaoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [ultimaNotificacao, setUltimaNotificacao] = useState<Notificacao>(() => {
     const savedNotificacao = localStorage.getItem('ultimaNotificacao');
-    return savedNotificacao ? JSON.parse(savedNotificacao) : { id: 5 };
+    return savedNotificacao ? JSON.parse(savedNotificacao) : { id: 5, timestamp: new Date().toISOString().slice(0, -5) + 'Z' };
   });
 
   useEffect(() => {
@@ -31,3 +31,4 @@ const NotificacaoProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 };
 
 export { NotificacaoProvider, NotificacaoContext };
+
