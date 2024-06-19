@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,18 +24,14 @@ public class NoticiaService {
 
     @Autowired
     private NoticiaRepository noticiaRepository;
+    private Long ultimaNoticiaId = null;
+    private LocalDateTime ultimaNoticiaTimestamp = null;
+    private String tituloUltimaNoticia = null;
+    private String ultimaNoticiaAlteracao = null;
 
     public List<Noticia> recuperarNoticias() {
         return noticiaRepository.recuperarNoticias();
     }
-
-//    public Noticia cadastrarNoticia(Noticia noticia) {
-//        if (noticia.getId() == null) {
-//            return noticiaRepository.save(noticia);
-//        } else {
-//            throw new EntidadeDestacadaException("Tentando cadastrar uma notícia destacada");
-//        }
-//    }
 
     public Noticia cadastrarNoticia(Noticia noticia) {
         if (noticia.getId() != null) {
@@ -41,6 +39,10 @@ public class NoticiaService {
         }
 
         Noticia novaNoticia = noticiaRepository.save(noticia);
+        tituloUltimaNoticia = novaNoticia.getTitulo();
+        ultimaNoticiaId = novaNoticia.getId();
+        ultimaNoticiaTimestamp = LocalDateTime.now();
+        ultimaNoticiaAlteracao = "Cadastrada";
 
         return novaNoticia;
     }
@@ -50,6 +52,10 @@ public class NoticiaService {
         if (noticia.getId() != null) {
             noticiaRepository.findById(noticia.getId())
                     .orElseThrow(() -> new EntidadeNaoEncontradaException("Notícia não encontrada."));
+            tituloUltimaNoticia = noticia.getTitulo();
+            ultimaNoticiaId = noticia.getId();
+            ultimaNoticiaTimestamp = LocalDateTime.now();
+            ultimaNoticiaAlteracao = "Alterada";
             return noticiaRepository.save(noticia);
         } else {
             throw new EntidadeTransienteException("Tentando alterar uma notícia transiente.");
@@ -57,7 +63,11 @@ public class NoticiaService {
     }
 
     public void removerNoticia(Long id) {
+        tituloUltimaNoticia = this.recuperarNoticiaPorId(id).getTitulo();
         noticiaRepository.deleteById(id);
+        ultimaNoticiaId = id;
+        ultimaNoticiaTimestamp = LocalDateTime.now();
+        ultimaNoticiaAlteracao = "Removida";
     }
 
     @GetMapping
@@ -66,4 +76,25 @@ public class NoticiaService {
                 .orElseThrow(() -> new EntidadeNaoEncontradaException("Notícia número " + id + " não encontrada"));
     }
 
+    private Boolean houveNovaNoticia(LocalDateTime timestamp) {
+        if(this.ultimaNoticiaTimestamp == null || timestamp == null) {
+            System.out.println("Timestamps nulos");
+            return false;
+        }
+            if(timestamp.isBefore(this.ultimaNoticiaTimestamp)) {
+            return true;
+        }
+        return false;
+    }
+
+    public List<String> getUltimaNoticia(LocalDateTime timestamp) {
+        List<String> resposta = new ArrayList<String>();
+        // if(!this.houveNovaNoticia(timestamp)) {
+        //     return resposta;
+        // }
+        resposta.add(ultimaNoticiaId.toString());
+        resposta.add(tituloUltimaNoticia);
+        resposta.add(ultimaNoticiaAlteracao);
+        return resposta;
+    }
 }

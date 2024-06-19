@@ -2,7 +2,6 @@ package com.carlosribeiro.sb01.controller;
 
 import com.carlosribeiro.sb01.model.Noticia;
 import com.carlosribeiro.sb01.service.NotificacaoService;
-import com.carlosribeiro.sb01.util.NoticiaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +32,7 @@ public class NotificacaoController {
     }
 
     @GetMapping("/ultimas")
-    public List<NoticiaDTO> getUltimasNotificacoes(@RequestParam(required = false) String ultimoTimestampVisualizado) {
+    public List<String> getUltimasNotificacoes(@RequestParam(required = false) String ultimoTimestampVisualizado) {
         LocalDateTime timestamp = null;
         if (ultimoTimestampVisualizado != null && !ultimoTimestampVisualizado.isEmpty()) {
             try {
@@ -42,6 +41,7 @@ public class NotificacaoController {
                 e.printStackTrace();
             }
         }
+        if(timestamp == null) LocalDateTime.now();
         return notificacaoService.getUltimasNotificacoes(timestamp);
     }
 }
