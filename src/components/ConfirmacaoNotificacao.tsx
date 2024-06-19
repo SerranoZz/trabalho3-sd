@@ -20,17 +20,17 @@ const ConfirmacaoNotificacao: React.FC = () => {
         }
 
         const response = await axios.get(url);
-        const novasNotificacoes = response.data;
+        const novaNotificacao = response.data;
 
-        console.log("chegou", JSON.stringify(novasNotificacoes))
-
-        if (novasNotificacoes.length > 0) {
-          for (const novaNotificacao of novasNotificacoes) {
-            const mensagem = novaNotificacao.status === 'adicionada' ? 'Nova notícia cadastrada!' : 'Notícia editada!';
-            
+        console.log("chegou", JSON.stringify(novaNotificacao))
+        
+        if (novaNotificacao.hasOwnProperty("alteracao")) {
+          const mensagem = novaNotificacao.alteracao === 'Cadastrada' ? 'Nova notícia cadastrada!' : novaNotificacao.alteracao === 'Alterada' ? 'Notícia editada!' : 'Notícia excluída!';
+          console.log(novaNotificacao.alteracao);
+          if(novaNotificacao.alteracao != 'Removida') {
             Swal.fire({
               title: mensagem,
-              text: `Deseja visualizar a notícia "${novaNotificacao.noticia.titulo}"?`, // Adicione o título da notícia
+              text: `Deseja visualizar a notícia "${novaNotificacao.titulo}"?`, // Adicione o título da notícia
               icon: 'info',
               showCancelButton: true,
               confirmButtonText: 'Sim',
@@ -39,15 +39,14 @@ const ConfirmacaoNotificacao: React.FC = () => {
               cancelButtonColor: '#FFD700',
             }).then((result) => {
               if (result.isConfirmed) {
-                window.location.href = `${BASE_URL2}/noticia/${novaNotificacao.noticia.id}`;
+                window.location.href = `${BASE_URL2}/noticia/${novaNotificacao.id}`;
               }
             });
           }
 
-          const ultimaNotificacaoRecebida = novasNotificacoes[novasNotificacoes.length - 1];
           const novoValor: Notificacao = { 
-            id: ultimaNotificacaoRecebida.noticia.id, 
-            timestamp: ultimaNotificacaoRecebida.noticia.dataAtualizacao
+            id: novaNotificacao.id, 
+            timestamp: novaNotificacao.timestamp
           };
           setUltimaNotificacao(novoValor);
         }

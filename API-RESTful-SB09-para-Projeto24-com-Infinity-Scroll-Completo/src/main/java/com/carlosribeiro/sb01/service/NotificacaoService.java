@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -19,7 +20,7 @@ public class NotificacaoService {
         this.noticiaService = noticiaService;
     }
 
-    public List<String> getUltimasNotificacoes(LocalDateTime ultimoTimestampVisualizado) {
+    public Map<String, Object> getUltimasNotificacoes(LocalDateTime ultimoTimestampVisualizado) {
         return noticiaService.getUltimaNoticia(ultimoTimestampVisualizado);
     }
 }

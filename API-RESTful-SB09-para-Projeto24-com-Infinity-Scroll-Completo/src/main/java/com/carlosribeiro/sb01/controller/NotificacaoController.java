@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = ConstantesServidor.URL)
 @RestController
@@ -32,7 +33,7 @@ public class NotificacaoController {
     }
 
     @GetMapping("/ultimas")
-    public List<String> getUltimasNotificacoes(@RequestParam(required = false) String ultimoTimestampVisualizado) {
+    public Map<String, Object> getUltimasNotificacoes(@RequestParam(required = false) String ultimoTimestampVisualizado) {
         LocalDateTime timestamp = null;
         if (ultimoTimestampVisualizado != null && !ultimoTimestampVisualizado.isEmpty()) {
             try {

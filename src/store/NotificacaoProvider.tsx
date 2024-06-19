@@ -7,7 +7,7 @@ interface NotificacaoContextType {
 }
 
 const defaultNotificacaoContext: NotificacaoContextType = {
-  ultimaNotificacao: { id: 5, timestamp: new Date().toISOString().slice(0, -5) + 'Z' },
+  ultimaNotificacao: { id: 5, timestamp: new Date().toISOString().slice(0, -5)},
   setUltimaNotificacao: () => {}
 };
 
@@ -16,7 +16,7 @@ const NotificacaoContext = createContext<NotificacaoContextType>(defaultNotifica
 const NotificacaoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [ultimaNotificacao, setUltimaNotificacao] = useState<Notificacao>(() => {
     const savedNotificacao = localStorage.getItem('ultimaNotificacao');
-    return savedNotificacao ? JSON.parse(savedNotificacao) : { id: 5, timestamp: new Date().toISOString().slice(0, -5) + 'Z' };
+    return savedNotificacao ? JSON.parse(savedNotificacao) : { id: 5, timestamp: new Date().toISOString().slice(0, -5)};
   });
 
   useEffect(() => {

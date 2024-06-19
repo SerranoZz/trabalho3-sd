@@ -87,14 +87,15 @@ public class NoticiaService {
         return false;
     }
 
-    public List<String> getUltimaNoticia(LocalDateTime timestamp) {
-        List<String> resposta = new ArrayList<String>();
-        // if(!this.houveNovaNoticia(timestamp)) {
-        //     return resposta;
-        // }
-        resposta.add(ultimaNoticiaId.toString());
-        resposta.add(tituloUltimaNoticia);
-        resposta.add(ultimaNoticiaAlteracao);
+    public Map<String, Object> getUltimaNoticia(LocalDateTime timestamp) {
+        Map<String, Object> resposta = new HashMap<>();
+        if(!this.houveNovaNoticia(timestamp)) {
+            return resposta;
+        }
+        resposta.put("id", ultimaNoticiaId);
+        resposta.put("titulo", tituloUltimaNoticia);
+        resposta.put("alteracao", ultimaNoticiaAlteracao);
+        resposta.put("timestamp", ultimaNoticiaTimestamp);
         return resposta;
     }
 }
