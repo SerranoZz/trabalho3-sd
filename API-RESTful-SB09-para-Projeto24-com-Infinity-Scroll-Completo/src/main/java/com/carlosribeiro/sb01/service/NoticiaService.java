@@ -7,13 +7,10 @@ import com.carlosribeiro.sb01.model.Noticia;
 import com.carlosribeiro.sb01.repository.NoticiaRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -81,10 +78,7 @@ public class NoticiaService {
             System.out.println("Timestamps nulos");
             return false;
         }
-            if(timestamp.isBefore(this.ultimaNoticiaTimestamp)) {
-            return true;
-        }
-        return false;
+        return timestamp.isBefore(this.ultimaNoticiaTimestamp);
     }
 
     public Map<String, Object> getUltimaNoticiaManipulada(LocalDateTime timestamp) {

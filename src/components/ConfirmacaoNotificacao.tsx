@@ -30,7 +30,7 @@ const ConfirmacaoNotificacao: React.FC = () => {
           if(novaNotificacao.operacao != 'Removida') {
             Swal.fire({
               title: mensagem,
-              text: `Deseja visualizar a notícia "${novaNotificacao.titulo}"?`, // Adicione o título da notícia
+              text: `Deseja visualizar a notícia "${novaNotificacao.titulo}"?`, 
               icon: 'info',
               showCancelButton: true,
               confirmButtonText: 'Sim',
@@ -42,8 +42,8 @@ const ConfirmacaoNotificacao: React.FC = () => {
                 window.location.href = `${BASE_URL2}/noticia/${novaNotificacao.id}`;
               }
             });
-          }
-
+          } 
+          
           const novoValor: Notificacao = { 
             id: novaNotificacao.id, 
             timestamp: novaNotificacao.timestamp
