@@ -1,24 +1,18 @@
 package com.carlosribeiro.sb01.controller;
 
-import com.carlosribeiro.sb01.model.Noticia;
 import com.carlosribeiro.sb01.service.NotificacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import com.carlosribeiro.sb01.util.ConstantesServidor;
-
-import com.carlosribeiro.sb01.model.Noticia;
-import com.carlosribeiro.sb01.service.NotificacaoService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.carlosribeiro.sb01.util.ConstantesServidor;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.List;
 import java.util.Map;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @CrossOrigin(origins = ConstantesServidor.URL)
 @RestController
@@ -33,16 +27,23 @@ public class NotificacaoController {
     }
 
     @GetMapping("/ultima")
-    public Map<String, Object> getUltimaNotificacao(@RequestParam(required = false) String ultimoTimestampVisualizado) {
-        LocalDateTime timestamp = null;
-        if (ultimoTimestampVisualizado != null && !ultimoTimestampVisualizado.isEmpty()) {
-            try {
-                timestamp = LocalDateTime.parse(ultimoTimestampVisualizado);
-            } catch (DateTimeParseException e) {
-                e.printStackTrace();
-            }
+    public ResponseEntity<?> getUltimaNotificacao(
+            @RequestParam(required = false) String ultimoTimestampVisualizado
+    ) {
+        LocalDateTime timestamp = ultimoTimestampVisualizado != null && !ultimoTimestampVisualizado.isEmpty()
+                ? LocalDateTime.parse(ultimoTimestampVisualizado)
+                : LocalDateTime.now();
+        Map<String, Object> notificacao = notificacaoService.getUltimaNotificacao(timestamp);
+
+        if (notificacao == null || notificacao.isEmpty()) {
+            return ResponseEntity.noContent().build();
         }
-        if(timestamp == null) LocalDateTime.now();
-        return notificacaoService.getUltimaNotificacao(timestamp);
+
+        EntityModel<Map<String, Object>> resource = EntityModel.of(notificacao,
+                linkTo(methodOn(NotificacaoController.class).getUltimaNotificacao(ultimoTimestampVisualizado)).withSelfRel()
+        );
+
+        return ResponseEntity.ok(resource);
     }
 }
+

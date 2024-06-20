@@ -14,7 +14,7 @@ const ConfirmacaoNotificacao: React.FC = () => {
       }
 
       try {
-        let url = `${BASE_URL}/notificacoes/ultimas`;
+        let url = `${BASE_URL}/notificacoes/ultima`;
         if (ultimaNotificacao?.timestamp) {
           url += `?ultimoTimestampVisualizado=${ultimaNotificacao.timestamp}`;
         }

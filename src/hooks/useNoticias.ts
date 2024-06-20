@@ -3,12 +3,17 @@ import Noticia from "../interfaces/noticia";
 import axios from "axios";
 import { BASE_URL } from "../util/constants";
 
-const useNoticias = () => useQuery({
-  queryKey: ['noticias'],
-  queryFn: () => axios
-    .get<Noticia[]>(BASE_URL+"/noticias")
-    .then(res => res.data),
-  staleTime: 10_000  
-});
+const useNoticias = () => {
+  return useQuery({
+    queryKey: ["noticias"],
+    queryFn: async () => {
+      const response = await axios.get<{ _embedded: { noticiaList: Noticia[] } }>(
+        BASE_URL + "/noticias"
+      );
+      return response.data._embedded.noticiaList;
+    },
+    staleTime: 10_000, 
+  });
+};
 
 export default useNoticias;

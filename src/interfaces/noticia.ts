@@ -3,7 +3,10 @@ interface Noticia {
     capa: string;
     titulo: string;
     descricao: string;
-    dataPostagem: Date;
-}
-
-export default Noticia;
+    dataPostagem: Date; 
+    
+    _links: {
+      self: { href: string };
+      noticias: { href: string };
+    };
+  }

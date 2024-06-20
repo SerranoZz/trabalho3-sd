@@ -5,7 +5,7 @@ import Notificacao from "../interfaces/notificacao";
 
 const useNotificacao = (ultimoIdVisualizado: string) => {
   return useQuery(['ultimasNotificacoes', ultimoIdVisualizado], async () => {
-    const url = `${BASE_URL}/notificacoes/ultimas?ultimoIdVisualizado=${ultimoIdVisualizado}`;
+    const url = `${BASE_URL}/notificacoes/ultima?ultimoIdVisualizado=${ultimoIdVisualizado}`;
     const response = await axios.get<Notificacao[]>(url);
     return response.data;
   }, {
