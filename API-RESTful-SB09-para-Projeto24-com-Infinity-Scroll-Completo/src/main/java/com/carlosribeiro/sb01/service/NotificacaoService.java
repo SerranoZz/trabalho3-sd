@@ -20,7 +20,7 @@ public class NotificacaoService {
         this.noticiaService = noticiaService;
     }
 
-    public Map<String, Object> getUltimasNotificacoes(LocalDateTime ultimoTimestampVisualizado) {
+    public Map<String, Object> getUltimaNotificacao(LocalDateTime ultimoTimestampVisualizado) {
         return noticiaService.getUltimaNoticiaManipulada(ultimoTimestampVisualizado);
     }
 }

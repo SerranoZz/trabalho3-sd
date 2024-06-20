@@ -32,8 +32,8 @@ public class NotificacaoController {
         this.notificacaoService = notificacaoService;
     }
 
-    @GetMapping("/ultimas")
-    public Map<String, Object> getUltimasNotificacoes(@RequestParam(required = false) String ultimoTimestampVisualizado) {
+    @GetMapping("/ultima")
+    public Map<String, Object> getUltimaNotificacao(@RequestParam(required = false) String ultimoTimestampVisualizado) {
         LocalDateTime timestamp = null;
         if (ultimoTimestampVisualizado != null && !ultimoTimestampVisualizado.isEmpty()) {
             try {
@@ -43,6 +43,6 @@ public class NotificacaoController {
             }
         }
         if(timestamp == null) LocalDateTime.now();
-        return notificacaoService.getUltimasNotificacoes(timestamp);
+        return notificacaoService.getUltimaNotificacao(timestamp);
     }
 }
