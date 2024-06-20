@@ -25,14 +25,16 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @PostMapping
+    @PostMapping("/cadastro")
     public ResponseEntity<?> cadastrarUsuario(@RequestBody Usuario usuario) {
         try {
             Usuario novoUsuario = usuarioService.salvarUsuario(usuario);
 
             EntityModel<Usuario> usuarioResource = EntityModel.of(novoUsuario,
                     linkTo(methodOn(UsuarioController.class).cadastrarUsuario(novoUsuario)).withSelfRel(),
-                    linkTo(methodOn(UsuarioController.class).login(usuario)).withRel("login")
+                    linkTo(methodOn(UsuarioController.class).login(usuario)).withRel("login"),
+                    linkTo(methodOn(UsuarioController.class).cadastrarUsuario(null)).withRel("cadastro")
+
             );
 
             return ResponseEntity.created(linkTo(methodOn(UsuarioController.class).cadastrarUsuario(novoUsuario)).toUri()) // 201 Created
@@ -50,7 +52,8 @@ public class UsuarioController {
             Usuario usuarioLogado = usuarioOpt.get();
 
             EntityModel<Usuario> usuarioResource = EntityModel.of(usuarioLogado,
-                    linkTo(methodOn(UsuarioController.class).login(usuario)).withSelfRel()
+                    linkTo(methodOn(UsuarioController.class).login(usuario)).withSelfRel(),
+                    linkTo(methodOn(UsuarioController.class).cadastrarUsuario(null)).withRel("cadastro")
             );
 
             return ResponseEntity.ok(usuarioResource);

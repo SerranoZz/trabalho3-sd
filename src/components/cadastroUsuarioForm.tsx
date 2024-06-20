@@ -8,7 +8,7 @@ const CadastroUsuarioForm = ({ onClose }) => {
 
     const onSubmit = async (data) => {
         try {
-            const response = await axios.post(`${BASE_URL}/usuarios`, data);
+            const response = await axios.post(`${BASE_URL}/usuarios/cadastro`, data);
             const confirmacao = window.confirm(`Usuário(a) ${response.data.nome} cadastrado com sucesso!`);
             if (confirmacao) {
                 window.location.reload();
