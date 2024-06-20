@@ -24,10 +24,10 @@ const ConfirmacaoNotificacao: React.FC = () => {
 
         console.log("chegou", JSON.stringify(novaNotificacao))
         
-        if (novaNotificacao.hasOwnProperty("alteracao")) {
-          const mensagem = novaNotificacao.alteracao === 'Cadastrada' ? 'Nova notícia cadastrada!' : novaNotificacao.alteracao === 'Alterada' ? 'Notícia editada!' : 'Notícia excluída!';
-          console.log(novaNotificacao.alteracao);
-          if(novaNotificacao.alteracao != 'Removida') {
+        if (novaNotificacao.hasOwnProperty("operacao")) {
+          const mensagem = novaNotificacao.operacao === 'Cadastrada' ? 'Nova notícia cadastrada!' : novaNotificacao.operacao === 'Alterada' ? 'Notícia editada!' : 'Notícia excluída!';
+          console.log(novaNotificacao.operacao);
+          if(novaNotificacao.operacao != 'Removida') {
             Swal.fire({
               title: mensagem,
               text: `Deseja visualizar a notícia "${novaNotificacao.titulo}"?`, // Adicione o título da notícia

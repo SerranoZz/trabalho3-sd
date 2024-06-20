@@ -94,7 +94,7 @@ public class NoticiaService {
         }
         resposta.put("id", ultimaNoticiaId);
         resposta.put("titulo", tituloUltimaNoticia);
-        resposta.put("alteracao", ultimaNoticiaOperacao);
+        resposta.put("operacao", ultimaNoticiaOperacao);
         resposta.put("timestamp", ultimaNoticiaTimestamp);
         return resposta;
     }
