@@ -87,7 +87,7 @@ public class NoticiaService {
         return false;
     }
 
-    public Map<String, Object> getUltimaNoticia(LocalDateTime timestamp) {
+    public Map<String, Object> getUltimaNoticiaManipulada(LocalDateTime timestamp) {
         Map<String, Object> resposta = new HashMap<>();
         if(!this.houveNovaNoticia(timestamp)) {
             return resposta;

@@ -21,6 +21,6 @@ public class NotificacaoService {
     }
 
     public Map<String, Object> getUltimasNotificacoes(LocalDateTime ultimoTimestampVisualizado) {
-        return noticiaService.getUltimaNoticia(ultimoTimestampVisualizado);
+        return noticiaService.getUltimaNoticiaManipulada(ultimoTimestampVisualizado);
     }
 }
