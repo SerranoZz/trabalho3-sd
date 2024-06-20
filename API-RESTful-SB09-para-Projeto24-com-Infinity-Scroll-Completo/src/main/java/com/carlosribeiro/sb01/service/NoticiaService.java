@@ -27,7 +27,7 @@ public class NoticiaService {
     private Long ultimaNoticiaId = null;
     private LocalDateTime ultimaNoticiaTimestamp = null;
     private String tituloUltimaNoticia = null;
-    private String ultimaNoticiaAlteracao = null;
+    private String ultimaNoticiaOperacao = null;
 
     public List<Noticia> recuperarNoticias() {
         return noticiaRepository.recuperarNoticias();
@@ -42,7 +42,7 @@ public class NoticiaService {
         tituloUltimaNoticia = novaNoticia.getTitulo();
         ultimaNoticiaId = novaNoticia.getId();
         ultimaNoticiaTimestamp = LocalDateTime.now();
-        ultimaNoticiaAlteracao = "Cadastrada";
+        ultimaNoticiaOperacao = "Cadastrada";
 
         return novaNoticia;
     }
@@ -55,7 +55,7 @@ public class NoticiaService {
             tituloUltimaNoticia = noticia.getTitulo();
             ultimaNoticiaId = noticia.getId();
             ultimaNoticiaTimestamp = LocalDateTime.now();
-            ultimaNoticiaAlteracao = "Alterada";
+            ultimaNoticiaOperacao = "Alterada";
             return noticiaRepository.save(noticia);
         } else {
             throw new EntidadeTransienteException("Tentando alterar uma notícia transiente.");
@@ -67,7 +67,7 @@ public class NoticiaService {
         noticiaRepository.deleteById(id);
         ultimaNoticiaId = id;
         ultimaNoticiaTimestamp = LocalDateTime.now();
-        ultimaNoticiaAlteracao = "Removida";
+        ultimaNoticiaOperacao = "Removida";
     }
 
     @GetMapping
@@ -94,7 +94,7 @@ public class NoticiaService {
         }
         resposta.put("id", ultimaNoticiaId);
         resposta.put("titulo", tituloUltimaNoticia);
-        resposta.put("alteracao", ultimaNoticiaAlteracao);
+        resposta.put("alteracao", ultimaNoticiaOperacao);
         resposta.put("timestamp", ultimaNoticiaTimestamp);
         return resposta;
     }
