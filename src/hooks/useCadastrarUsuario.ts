@@ -4,7 +4,7 @@ import { URL_USUARIOS } from "../util/constants";
 import useApi from "./useApi";
 
 const useCadastrarUsuario = () => {
-  const { cadastrar } = useApi<Usuario>(URL_USUARIOS); 
+  const { cadastrar } = useApi<Usuario>(URL_USUARIOS+"/cadastro"); 
   const queryClient = useQueryClient();
   
   return useMutation({

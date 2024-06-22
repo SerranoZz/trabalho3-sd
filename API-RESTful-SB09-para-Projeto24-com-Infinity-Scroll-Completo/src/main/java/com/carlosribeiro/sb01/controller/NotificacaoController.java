@@ -3,6 +3,7 @@ package com.carlosribeiro.sb01.controller;
 import com.carlosribeiro.sb01.service.NotificacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @CrossOrigin(origins = ConstantesServidor.URL)
 @RestController
-@RequestMapping("/notificacoes")
+@RequestMapping(value = "/notificacoes", produces = MediaType.APPLICATION_JSON_VALUE)
 public class NotificacaoController {
 
     private final NotificacaoService notificacaoService;

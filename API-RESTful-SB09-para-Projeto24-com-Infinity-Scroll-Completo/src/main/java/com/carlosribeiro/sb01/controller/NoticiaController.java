@@ -6,6 +6,7 @@ import com.carlosribeiro.sb01.util.ConstantesServidor;
 
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @CrossOrigin(origins = ConstantesServidor.URL)
 @RestController
-@RequestMapping("noticias")
+@RequestMapping(value = "/noticias", produces = MediaType.APPLICATION_JSON_VALUE)
 public class NoticiaController {
 
     private final NoticiaService noticiaService;

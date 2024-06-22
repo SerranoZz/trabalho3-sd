@@ -5,6 +5,7 @@ import com.carlosribeiro.sb01.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @CrossOrigin(origins = ConstantesServidor.URL)
 @RestController
-@RequestMapping("usuarios")
+@RequestMapping(value = "/usuarios", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UsuarioController {
     private final UsuarioService usuarioService;
 
