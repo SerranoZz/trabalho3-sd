@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -42,7 +43,7 @@ public class NoticiaService {
         Noticia novaNoticia = noticiaRepository.save(noticia);
         tituloUltimaNoticia = novaNoticia.getTitulo();
         ultimaNoticiaId = novaNoticia.getId();
-        ultimaNoticiaTimestamp = LocalDateTime.now();
+        ultimaNoticiaTimestamp = LocalDateTime.now(Clock.systemUTC());
         ultimaNoticiaOperacao = "Cadastrada";
 
         return novaNoticia;
@@ -55,7 +56,7 @@ public class NoticiaService {
                     .orElseThrow(() -> new EntidadeNaoEncontradaException("Notícia não encontrada."));
             tituloUltimaNoticia = noticia.getTitulo();
             ultimaNoticiaId = noticia.getId();
-            ultimaNoticiaTimestamp = LocalDateTime.now();
+            ultimaNoticiaTimestamp = LocalDateTime.now(Clock.systemUTC());
             ultimaNoticiaOperacao = "Alterada";
             return noticiaRepository.save(noticia);
         } else {
@@ -67,7 +68,7 @@ public class NoticiaService {
         tituloUltimaNoticia = this.recuperarNoticiaPorId(id).getTitulo();
         noticiaRepository.deleteById(id);
         ultimaNoticiaId = id;
-        ultimaNoticiaTimestamp = LocalDateTime.now();
+        ultimaNoticiaTimestamp = LocalDateTime.now(Clock.systemUTC());
         ultimaNoticiaOperacao = "Removida";
     }
 
