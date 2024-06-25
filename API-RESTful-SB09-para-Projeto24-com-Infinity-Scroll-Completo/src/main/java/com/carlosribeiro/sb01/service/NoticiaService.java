@@ -19,12 +19,16 @@ import java.util.Map;
 @Service
 public class NoticiaService {
 
-    @Autowired
-    private NoticiaRepository noticiaRepository;
+    private final NoticiaRepository noticiaRepository;
     private Long ultimaNoticiaId = null;
     private LocalDateTime ultimaNoticiaTimestamp = null;
     private String tituloUltimaNoticia = null;
     private String ultimaNoticiaOperacao = null;
+
+    @Autowired
+    public NoticiaService(NoticiaRepository noticiaRepository) {
+        this.noticiaRepository = noticiaRepository;
+    }
 
     public List<Noticia> recuperarNoticias() {
         return noticiaRepository.recuperarNoticias();

@@ -48,7 +48,7 @@ const NoticiaPage = () => {
         setConfirmarRemocao(false);
     };
 
-    const tratarRemocaoDeNoticia = (id) => {
+    const tratarRemocaoDeNoticia = (id: any) => {
         removerNoticia(id);
     };
 

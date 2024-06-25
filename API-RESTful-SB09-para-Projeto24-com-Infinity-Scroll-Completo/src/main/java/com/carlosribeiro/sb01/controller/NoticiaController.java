@@ -47,7 +47,7 @@ public class NoticiaController {
         Noticia savedNoticia = noticiaService.cadastrarNoticia(noticia);
         EntityModel<Noticia> entityModel = toEntityModel(savedNoticia);
         return ResponseEntity
-                .created(entityModel.getRequiredLink(SELF).toUri()) // Use SELF instead of Link.REL_SELF
+                .created(entityModel.getRequiredLink(SELF).toUri())
                 .body(entityModel);
     }
     @PutMapping

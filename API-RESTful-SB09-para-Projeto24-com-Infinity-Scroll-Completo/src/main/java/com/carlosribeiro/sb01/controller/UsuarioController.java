@@ -38,7 +38,7 @@ public class UsuarioController {
 
             );
 
-            return ResponseEntity.created(linkTo(methodOn(UsuarioController.class).cadastrarUsuario(novoUsuario)).toUri()) // 201 Created
+            return ResponseEntity.created(linkTo(methodOn(UsuarioController.class).cadastrarUsuario(novoUsuario)).toUri())
                     .body(usuarioResource);
 
         } catch (Exception e) {

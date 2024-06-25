@@ -5,15 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import jakarta.validation.Constraint;
 import jakarta.validation.constraints.NotEmpty;
-
-import java.time.LocalDate;
-
-import org.hibernate.validator.constraints.UniqueElements;
 
 @Data
 @AllArgsConstructor
